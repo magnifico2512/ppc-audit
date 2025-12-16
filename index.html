@@ -2220,6 +2220,7 @@
                                 <span>Conv Delta &gt; +3%</span>
                                 <span>Imp Share &lt; 15%</span>
                                 <span>ACOS &lt; 40%</span>
+                                <span style="background:#dcfce7;color:#166534">Min 5 ASIN Purchases</span>
                             </div>
                             <div class="insight-summary" id="sqpScaleSummary"></div>
                             <div class="insight-table-container" id="sqpScaleTable"></div>
@@ -2234,7 +2235,7 @@
                             <div class="insight-criteria">
                                 <span>Rank Trend: ↓ Declining</span>
                                 <span>ACOS &lt; 35%</span>
-                                <span>Has SP Data</span>
+                                <span style="background:#dcfce7;color:#166534">Min 3 ASIN Purchases</span>
                             </div>
                             <div class="insight-summary" id="sqpDefendSummary"></div>
                             <div class="insight-table-container" id="sqpDefendTable"></div>
@@ -2250,6 +2251,7 @@
                                 <span>Conv Delta &lt; -2%</span>
                                 <span>ACOS &gt; 50%</span>
                                 <span>Spend &gt; €20</span>
+                                <span style="background:#dcfce7;color:#166534">Min 10 Mkt Purchases</span>
                             </div>
                             <div class="insight-summary" id="sqpCutSummary"></div>
                             <div class="insight-table-container" id="sqpCutTable"></div>
@@ -2265,6 +2267,7 @@
                                 <span>ASIN Conv &gt; 15%</span>
                                 <span>Spend &lt; €10</span>
                                 <span>Query Vol &gt; 1000</span>
+                                <span style="background:#dcfce7;color:#166534">Min 5 ASIN Purchases</span>
                             </div>
                             <div class="insight-summary" id="sqpQuickWinSummary"></div>
                             <div class="insight-table-container" id="sqpQuickWinTable"></div>
@@ -2295,6 +2298,7 @@
                                 <span>Market CTR &lt; 2%</span>
                                 <span>ASIN Conv &gt; Market Conv</span>
                                 <span>Query Vol &gt; 500</span>
+                                <span style="background:#dcfce7;color:#166534">Min 5 ASIN Purchases</span>
                             </div>
                             <div class="insight-summary" id="sqpGemSummary"></div>
                             <div class="insight-table-container" id="sqpGemTable"></div>
@@ -5669,6 +5673,10 @@
             // Get end date for rank calculations
             const endDate = currentSqpEndDate || new Date();
             
+            // Minimum thresholds for statistical significance
+            const MIN_ASIN_PURCHASES = 5;  // Minimum purchases to be statistically relevant
+            const MIN_MARKET_PURCHASES = 10; // Minimum market purchases for comparison
+            
             // Categorize keywords
             const scaleOpps = [];
             const defendPositions = [];
@@ -5683,40 +5691,55 @@
                 const rankDiff = (spRankStats.avg30d !== null && spRankStats.bestRank !== null) 
                     ? spRankStats.avg30d - spRankStats.bestRank : 0;
                 
+                // Get purchase counts
+                const asinPurchases = row.purchasesAsinCount || 0;
+                const marketPurchases = row.purchasesTotalCount || 0;
+                const purchaseShare = marketPurchases > 0 ? (asinPurchases / marketPurchases * 100) : 0;
+                
                 // 🚀 Scale Opportunities: Conv Delta > +3%, Imp Share < 15%, ACOS < 40%
+                // NOW REQUIRES: Minimum 5 ASIN purchases for statistical significance
                 if (row.convDelta !== null && row.convDelta > 3 && 
                     row.impressionShareSqp < 15 && 
-                    row.acos < 0.4 && row.acos !== Infinity && row.spend > 0) {
-                    scaleOpps.push({ ...row, spRankStats, action: 'Increase Bids' });
+                    row.acos < 0.4 && row.acos !== Infinity && row.spend > 0 &&
+                    asinPurchases >= MIN_ASIN_PURCHASES) {
+                    scaleOpps.push({ ...row, spRankStats, asinPurchases, marketPurchases, purchaseShare, action: 'Increase Bids' });
                 }
                 
                 // 🛡️ Defend Position: Rank declining, ACOS < 35%, has SP data
+                // Requires minimum purchases for validity
                 if (rankTrend === 'declining' && 
-                    row.acos < 0.35 && row.acos !== Infinity && row.spend > 5) {
-                    defendPositions.push({ ...row, spRankStats, action: 'Increase Bids' });
+                    row.acos < 0.35 && row.acos !== Infinity && row.spend > 5 &&
+                    asinPurchases >= 3) {
+                    defendPositions.push({ ...row, spRankStats, asinPurchases, marketPurchases, purchaseShare, action: 'Increase Bids' });
                 }
                 
                 // ✂️ Cut or Optimize: Conv Delta < -2%, ACOS > 50%, Spend > €20
+                // For cutting, we care more about spend than purchases
                 if (row.convDelta !== null && row.convDelta < -2 && 
-                    row.acos > 0.5 && row.spend > 20) {
-                    cutOptimize.push({ ...row, spRankStats, action: 'Reduce/Negate' });
+                    row.acos > 0.5 && row.spend > 20 &&
+                    marketPurchases >= MIN_MARKET_PURCHASES) {
+                    cutOptimize.push({ ...row, spRankStats, asinPurchases, marketPurchases, purchaseShare, action: 'Reduce/Negate' });
                 }
                 
                 // 🎯 Quick Wins: ASIN Conv > 15%, Low spend, Good query volume
-                if (row.asinConvRate > 15 && row.spend < 10 && row.queryVolume > 1000) {
-                    quickWins.push({ ...row, spRankStats, action: 'Start Ads' });
+                // Requires minimum purchases to prove conversion is real
+                if (row.asinConvRate > 15 && row.spend < 10 && row.queryVolume > 1000 &&
+                    asinPurchases >= MIN_ASIN_PURCHASES) {
+                    quickWins.push({ ...row, spRankStats, asinPurchases, marketPurchases, purchaseShare, action: 'Start Ads' });
                 }
                 
                 // 📉 Rank Recovery: Lost significant positions
                 if (spRankStats.bestRank !== null && spRankStats.bestRank <= 10 && 
                     rankDiff > 5 && row.queryVolume > 500) {
-                    rankRecovery.push({ ...row, spRankStats, rankDiff, action: 'Push Bids' });
+                    rankRecovery.push({ ...row, spRankStats, asinPurchases, marketPurchases, purchaseShare, rankDiff, action: 'Push Bids' });
                 }
                 
                 // 💎 Hidden Gems: Low market CTR, you convert better
+                // Requires minimum purchases for validity
                 if (row.marketCtr < 2 && row.convDelta !== null && row.convDelta > 0 && 
-                    row.queryVolume > 500) {
-                    hiddenGems.push({ ...row, spRankStats, action: 'Dominate' });
+                    row.queryVolume > 500 &&
+                    asinPurchases >= MIN_ASIN_PURCHASES) {
+                    hiddenGems.push({ ...row, spRankStats, asinPurchases, marketPurchases, purchaseShare, action: 'Dominate' });
                 }
             });
             
@@ -5768,13 +5791,15 @@
             const summaryEl = document.getElementById(prefix + 'Summary');
             const tableEl = document.getElementById(prefix + 'Table');
             
-            // Sort by query volume descending
-            data.sort((a, b) => b.queryVolume - a.queryVolume);
+            // Sort by ASIN purchases descending (most statistically significant first)
+            data.sort((a, b) => (b.asinPurchases || 0) - (a.asinPurchases || 0));
             
             // Calculate totals
             const totalSpend = data.reduce((s, r) => s + r.spend, 0);
             const totalSales = data.reduce((s, r) => s + r.sales, 0);
             const totalVolume = data.reduce((s, r) => s + r.queryVolume, 0);
+            const totalAsinPurchases = data.reduce((s, r) => s + (r.asinPurchases || 0), 0);
+            const totalMarketPurchases = data.reduce((s, r) => s + (r.marketPurchases || 0), 0);
             
             let summaryClass = '';
             if (type === 'scale' || type === 'quickwin' || type === 'gem') summaryClass = 'good';
@@ -5783,15 +5808,17 @@
             summaryEl.className = 'insight-summary ' + summaryClass;
             summaryEl.innerHTML = `
                 <div class="insight-summary-item"><span class="insight-summary-label">Keywords:</span><span class="insight-summary-value">${formatNumber(data.length)}</span></div>
-                <div class="insight-summary-item"><span class="insight-summary-label">Query Volume:</span><span class="insight-summary-value">${formatNumber(totalVolume)}</span></div>
+                <div class="insight-summary-item"><span class="insight-summary-label">Your Purchases:</span><span class="insight-summary-value">${formatNumber(Math.round(totalAsinPurchases))}</span></div>
+                <div class="insight-summary-item"><span class="insight-summary-label">Market Purchases:</span><span class="insight-summary-value">${formatNumber(Math.round(totalMarketPurchases))}</span></div>
                 <div class="insight-summary-item"><span class="insight-summary-label">Spend:</span><span class="insight-summary-value">${formatCurrencyDecimal(totalSpend)}</span></div>
                 <div class="insight-summary-item"><span class="insight-summary-label">Sales:</span><span class="insight-summary-value">${formatCurrencyDecimal(totalSales)}</span></div>
             `;
             
             if (data.length === 0) {
-                let emptyMsg = 'No keywords found matching criteria';
-                if (type === 'scale') emptyMsg = 'No scale opportunities found. Try adjusting your bids!';
+                let emptyMsg = 'No keywords found matching criteria (min 5 purchases required)';
+                if (type === 'scale') emptyMsg = 'No scale opportunities with sufficient purchase data (min 5 ASIN purchases required)';
                 if (type === 'cut') emptyMsg = '✅ Great! No bleeding keywords found';
+                if (type === 'quickwin') emptyMsg = 'No quick wins with sufficient purchase data (min 5 ASIN purchases required)';
                 tableEl.innerHTML = `<div class="insight-empty ${type === 'cut' ? 'good' : ''}">${emptyMsg}</div>`;
                 return;
             }
@@ -5802,12 +5829,13 @@
                 <table>
                     <thead>
                         <tr>
-                            <th style="min-width:160px">Keyword</th>
+                            <th style="min-width:140px">Keyword</th>
                             <th>ASIN</th>
-                            <th>Query Vol</th>
+                            <th title="Your ASIN Purchases">Your Purch</th>
+                            <th title="Total Market Purchases">Mkt Purch</th>
+                            <th title="Your Share of Purchases">Share</th>
                             <th>Conv Δ</th>
                             <th>Imp Share</th>
-                            <th>Rank Trend</th>
                             <th>ACOS</th>
                             <th>Spend</th>
                             <th>Action</th>
@@ -5818,17 +5846,8 @@
                             const convDeltaClass = row.convDelta > 0 ? 'conv-delta-positive' : 'conv-delta-negative';
                             const amazonUrl = 'https://www.amazon.' + marketplace + '/dp/' + row.asin;
                             
-                            // Rank trend display
-                            let rankTrendHtml = '-';
-                            if (row.spRankStats && row.spRankStats.avg30d !== null) {
-                                const trend = row.spRankStats.trend;
-                                let trendIcon = '→';
-                                let trendColor = '#6b7280';
-                                if (trend === 'improving') { trendIcon = '↑'; trendColor = '#10b981'; }
-                                else if (trend === 'declining') { trendIcon = '↓'; trendColor = '#ef4444'; }
-                                rankTrendHtml = '<span style="color:' + trendColor + ';font-weight:600;">' + 
-                                    row.spRankStats.avg30d.toFixed(1) + ' ' + trendIcon + '</span>';
-                            }
+                            // Purchase share color coding
+                            const purchaseShareClass = row.purchaseShare >= 10 ? 'conv-delta-positive' : (row.purchaseShare < 2 ? 'conv-delta-negative' : '');
                             
                             // Action badge
                             let actionClass = 'review';
@@ -5839,10 +5858,11 @@
                             return `<tr>
                                 <td class="search-term-text" title="${escapeHtml(row.searchTerm)}">${escapeHtml(row.searchTerm)}</td>
                                 <td><a href="${amazonUrl}" target="_blank" class="sqp-asin-link">${row.asin}</a></td>
-                                <td style="text-align:right">${formatNumber(Math.round(row.queryVolume))}</td>
+                                <td style="text-align:right;font-weight:600;color:#059669">${formatNumber(Math.round(row.asinPurchases || 0))}</td>
+                                <td style="text-align:right;color:#6b7280">${formatNumber(Math.round(row.marketPurchases || 0))}</td>
+                                <td class="${purchaseShareClass}" style="text-align:right">${row.purchaseShare ? row.purchaseShare.toFixed(1) + '%' : '-'}</td>
                                 <td class="${convDeltaClass}" style="text-align:right">${row.convDelta !== null ? (row.convDelta >= 0 ? '+' : '') + row.convDelta.toFixed(1) + '%' : '-'}</td>
                                 <td style="text-align:right">${row.impressionShareSqp.toFixed(1)}%</td>
-                                <td style="text-align:center">${rankTrendHtml}</td>
                                 <td class="${getAcosColorClass(row.acos)}" style="text-align:right">${row.acos === Infinity ? '∞' : formatPercent(row.acos, 1)}</td>
                                 <td style="text-align:right">${formatCurrencyDecimal(row.spend)}</td>
                                 <td><span class="insight-action-badge ${actionClass}">${row.action}</span></td>
@@ -7376,7 +7396,12 @@
                     clickPriceAsin: avg(value.clickPriceAsin),
                     clickPriceMarket: avg(value.clickPriceMarket),
                     weeklyImpShare: weeklyData,
-                    impShareTrend: impShareTrend
+                    impShareTrend: impShareTrend,
+                    // Raw purchase counts for statistical significance
+                    purchasesAsinCount: value.purchasesAsinCount,
+                    purchasesTotalCount: value.purchasesTotalCount,
+                    clicksAsinCount: value.clicksAsinCount,
+                    clicksTotalCount: value.clicksTotalCount
                 });
             });
             
@@ -7434,7 +7459,12 @@
                     // Impression share
                     impressionShareSqp: sqpMatch.impressionShare,
                     weeklyImpShare: sqpMatch.weeklyImpShare,
-                    impShareTrend: sqpMatch.impShareTrend
+                    impShareTrend: sqpMatch.impShareTrend,
+                    // Raw counts for statistical significance
+                    purchasesAsinCount: sqpMatch.purchasesAsinCount,
+                    purchasesTotalCount: sqpMatch.purchasesTotalCount,
+                    clicksAsinCount: sqpMatch.clicksAsinCount,
+                    clicksTotalCount: sqpMatch.clicksTotalCount
                 });
             });
             
