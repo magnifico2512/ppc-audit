@@ -829,6 +829,159 @@
             background: #f0fdf4;
             color: #166534;
         }
+        
+        /* SQP Strategic Insights Styles */
+        .sqp-insights-section {
+            margin-top: 2rem;
+            padding-top: 1rem;
+        }
+        .section-divider {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #7c3aed;
+        }
+        .section-divider span {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #5b21b6;
+        }
+        .section-divider small {
+            color: #8b5cf6;
+            font-size: 0.8rem;
+        }
+        .sqp-insights-dashboard {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+        @media (max-width: 1200px) {
+            .sqp-insights-dashboard {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .sqp-insights-dashboard {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        .sqp-insight-stat {
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .sqp-insight-stat:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .sqp-insight-stat-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+        .sqp-insight-stat-count {
+            font-size: 1.75rem;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .sqp-insight-stat-label {
+            font-size: 0.7rem;
+            font-weight: 500;
+            margin-top: 0.25rem;
+            opacity: 0.9;
+        }
+        .sqp-insight-stat.scale {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            color: white;
+        }
+        .sqp-insight-stat.defend {
+            background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+            color: white;
+        }
+        .sqp-insight-stat.cut {
+            background: linear-gradient(135deg, #dc2626 0%, #f87171 100%);
+            color: white;
+        }
+        .sqp-insight-stat.quickwin {
+            background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+            color: white;
+        }
+        .sqp-insight-stat.recovery {
+            background: linear-gradient(135deg, #ea580c 0%, #fb923c 100%);
+            color: white;
+        }
+        .sqp-insight-stat.gem {
+            background: linear-gradient(135deg, #0891b2 0%, #22d3ee 100%);
+            color: white;
+        }
+        .insight-card-scale .insight-header {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+        }
+        .insight-card-defend .insight-header {
+            background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+        }
+        .insight-card-cut .insight-header {
+            background: linear-gradient(135deg, #dc2626 0%, #f87171 100%);
+        }
+        .insight-card-quickwin .insight-header {
+            background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+        }
+        .insight-card-recovery .insight-header {
+            background: linear-gradient(135deg, #ea580c 0%, #fb923c 100%);
+        }
+        .insight-card-gem .insight-header {
+            background: linear-gradient(135deg, #0891b2 0%, #22d3ee 100%);
+        }
+        .insight-description {
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+            opacity: 0.9;
+            font-weight: normal;
+        }
+        .insight-criteria {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: #f8fafc;
+            flex-wrap: wrap;
+        }
+        .insight-criteria span {
+            background: #e2e8f0;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: #475569;
+        }
+        .insight-action-badge {
+            display: inline-block;
+            padding: 0.15rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.6rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .insight-action-badge.increase {
+            background: #dcfce7;
+            color: #166534;
+        }
+        .insight-action-badge.decrease {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        .insight-action-badge.review {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        .insight-action-badge.start {
+            background: #ddd6fe;
+            color: #5b21b6;
+        }
+        
         .search-term-text {
             max-width: 180px;
             overflow: hidden;
@@ -2044,6 +2197,108 @@
                         </div>
                         <div class="insight-summary" id="campHighAcosSummary"></div>
                         <div class="insight-table-container" id="campHighAcosTable"></div>
+                    </div>
+                </div>
+
+                <!-- SQP Strategic Insights Section -->
+                <div class="sqp-insights-section" id="sqpInsightsSection" style="display:none;">
+                    <div class="section-divider">
+                        <span>🎯 SQP Strategic Insights</span>
+                        <small>Powered by Search Query Performance + SP Data + Impression Rank</small>
+                    </div>
+                    
+                    <div class="sqp-insights-dashboard" id="sqpInsightsDashboard"></div>
+                    
+                    <div class="insights-grid">
+                        <!-- Scale Opportunities -->
+                        <div class="insight-card insight-card-scale">
+                            <div class="insight-header">
+                                <h3>🚀 Scale Opportunities</h3>
+                                <p class="insight-description">You outperform the market but don't have enough traffic. Increase bids aggressively!</p>
+                            </div>
+                            <div class="insight-criteria">
+                                <span>Conv Delta &gt; +3%</span>
+                                <span>Imp Share &lt; 15%</span>
+                                <span>ACOS &lt; 40%</span>
+                            </div>
+                            <div class="insight-summary" id="sqpScaleSummary"></div>
+                            <div class="insight-table-container" id="sqpScaleTable"></div>
+                        </div>
+
+                        <!-- Defend Position -->
+                        <div class="insight-card insight-card-defend">
+                            <div class="insight-header">
+                                <h3>🛡️ Defend Position</h3>
+                                <p class="insight-description">Profitable keywords with declining rank. Increase bids before you lose to competitors!</p>
+                            </div>
+                            <div class="insight-criteria">
+                                <span>Rank Trend: ↓ Declining</span>
+                                <span>ACOS &lt; 35%</span>
+                                <span>Has SP Data</span>
+                            </div>
+                            <div class="insight-summary" id="sqpDefendSummary"></div>
+                            <div class="insight-table-container" id="sqpDefendTable"></div>
+                        </div>
+
+                        <!-- Cut or Optimize -->
+                        <div class="insight-card insight-card-cut">
+                            <div class="insight-header">
+                                <h3>✂️ Cut or Optimize</h3>
+                                <p class="insight-description">You underperform the market and lose money. Reduce bids, negate, or fix listing!</p>
+                            </div>
+                            <div class="insight-criteria">
+                                <span>Conv Delta &lt; -2%</span>
+                                <span>ACOS &gt; 50%</span>
+                                <span>Spend &gt; €20</span>
+                            </div>
+                            <div class="insight-summary" id="sqpCutSummary"></div>
+                            <div class="insight-table-container" id="sqpCutTable"></div>
+                        </div>
+
+                        <!-- Quick Wins -->
+                        <div class="insight-card insight-card-quickwin">
+                            <div class="insight-header">
+                                <h3>🎯 Quick Wins</h3>
+                                <p class="insight-description">High organic conversion but low ad investment. Start or increase advertising!</p>
+                            </div>
+                            <div class="insight-criteria">
+                                <span>ASIN Conv &gt; 15%</span>
+                                <span>Spend &lt; €10</span>
+                                <span>Query Vol &gt; 1000</span>
+                            </div>
+                            <div class="insight-summary" id="sqpQuickWinSummary"></div>
+                            <div class="insight-table-container" id="sqpQuickWinTable"></div>
+                        </div>
+
+                        <!-- Rank Recovery -->
+                        <div class="insight-card insight-card-recovery">
+                            <div class="insight-header">
+                                <h3>📉 Rank Recovery Needed</h3>
+                                <p class="insight-description">You've lost significant ranking positions. Push bids to recover visibility!</p>
+                            </div>
+                            <div class="insight-criteria">
+                                <span>30d Avg - Best &gt; 5</span>
+                                <span>Query Vol &gt; 500</span>
+                                <span>Best Rank ≤ 10</span>
+                            </div>
+                            <div class="insight-summary" id="sqpRecoverySummary"></div>
+                            <div class="insight-table-container" id="sqpRecoveryTable"></div>
+                        </div>
+
+                        <!-- Hidden Gems -->
+                        <div class="insight-card insight-card-gem">
+                            <div class="insight-header">
+                                <h3>💎 Hidden Gems</h3>
+                                <p class="insight-description">Low competition keywords where you convert well. Dominate these niches!</p>
+                            </div>
+                            <div class="insight-criteria">
+                                <span>Market CTR &lt; 2%</span>
+                                <span>ASIN Conv &gt; Market Conv</span>
+                                <span>Query Vol &gt; 500</span>
+                            </div>
+                            <div class="insight-summary" id="sqpGemSummary"></div>
+                            <div class="insight-table-container" id="sqpGemTable"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -5400,6 +5655,220 @@
         window.renderKeywordsPerforming = renderKeywordsPerforming;
         window.renderCampaignsHighAcos = renderCampaignsHighAcos;
 
+        // ==================== SQP STRATEGIC INSIGHTS ====================
+        
+        function renderSqpStrategicInsights() {
+            const section = document.getElementById('sqpInsightsSection');
+            if (!sqpCombinedData || sqpCombinedData.length === 0) {
+                section.style.display = 'none';
+                return;
+            }
+            
+            section.style.display = 'block';
+            
+            // Get end date for rank calculations
+            const endDate = currentSqpEndDate || new Date();
+            
+            // Categorize keywords
+            const scaleOpps = [];
+            const defendPositions = [];
+            const cutOptimize = [];
+            const quickWins = [];
+            const rankRecovery = [];
+            const hiddenGems = [];
+            
+            sqpCombinedData.forEach(row => {
+                const spRankStats = getSpRankStats(row.searchTerm, endDate);
+                const rankTrend = spRankStats.trend || 'stable';
+                const rankDiff = (spRankStats.avg30d !== null && spRankStats.bestRank !== null) 
+                    ? spRankStats.avg30d - spRankStats.bestRank : 0;
+                
+                // 🚀 Scale Opportunities: Conv Delta > +3%, Imp Share < 15%, ACOS < 40%
+                if (row.convDelta !== null && row.convDelta > 3 && 
+                    row.impressionShareSqp < 15 && 
+                    row.acos < 0.4 && row.acos !== Infinity && row.spend > 0) {
+                    scaleOpps.push({ ...row, spRankStats, action: 'Increase Bids' });
+                }
+                
+                // 🛡️ Defend Position: Rank declining, ACOS < 35%, has SP data
+                if (rankTrend === 'declining' && 
+                    row.acos < 0.35 && row.acos !== Infinity && row.spend > 5) {
+                    defendPositions.push({ ...row, spRankStats, action: 'Increase Bids' });
+                }
+                
+                // ✂️ Cut or Optimize: Conv Delta < -2%, ACOS > 50%, Spend > €20
+                if (row.convDelta !== null && row.convDelta < -2 && 
+                    row.acos > 0.5 && row.spend > 20) {
+                    cutOptimize.push({ ...row, spRankStats, action: 'Reduce/Negate' });
+                }
+                
+                // 🎯 Quick Wins: ASIN Conv > 15%, Low spend, Good query volume
+                if (row.asinConvRate > 15 && row.spend < 10 && row.queryVolume > 1000) {
+                    quickWins.push({ ...row, spRankStats, action: 'Start Ads' });
+                }
+                
+                // 📉 Rank Recovery: Lost significant positions
+                if (spRankStats.bestRank !== null && spRankStats.bestRank <= 10 && 
+                    rankDiff > 5 && row.queryVolume > 500) {
+                    rankRecovery.push({ ...row, spRankStats, rankDiff, action: 'Push Bids' });
+                }
+                
+                // 💎 Hidden Gems: Low market CTR, you convert better
+                if (row.marketCtr < 2 && row.convDelta !== null && row.convDelta > 0 && 
+                    row.queryVolume > 500) {
+                    hiddenGems.push({ ...row, spRankStats, action: 'Dominate' });
+                }
+            });
+            
+            // Render dashboard
+            const dashboardEl = document.getElementById('sqpInsightsDashboard');
+            dashboardEl.innerHTML = `
+                <div class="sqp-insight-stat scale" onclick="scrollToInsight('sqpScaleTable')">
+                    <div class="sqp-insight-stat-icon">🚀</div>
+                    <div class="sqp-insight-stat-count">${scaleOpps.length}</div>
+                    <div class="sqp-insight-stat-label">Scale Opportunities</div>
+                </div>
+                <div class="sqp-insight-stat defend" onclick="scrollToInsight('sqpDefendTable')">
+                    <div class="sqp-insight-stat-icon">🛡️</div>
+                    <div class="sqp-insight-stat-count">${defendPositions.length}</div>
+                    <div class="sqp-insight-stat-label">Defend Position</div>
+                </div>
+                <div class="sqp-insight-stat cut" onclick="scrollToInsight('sqpCutTable')">
+                    <div class="sqp-insight-stat-icon">✂️</div>
+                    <div class="sqp-insight-stat-count">${cutOptimize.length}</div>
+                    <div class="sqp-insight-stat-label">Cut / Optimize</div>
+                </div>
+                <div class="sqp-insight-stat quickwin" onclick="scrollToInsight('sqpQuickWinTable')">
+                    <div class="sqp-insight-stat-icon">🎯</div>
+                    <div class="sqp-insight-stat-count">${quickWins.length}</div>
+                    <div class="sqp-insight-stat-label">Quick Wins</div>
+                </div>
+                <div class="sqp-insight-stat recovery" onclick="scrollToInsight('sqpRecoveryTable')">
+                    <div class="sqp-insight-stat-icon">📉</div>
+                    <div class="sqp-insight-stat-count">${rankRecovery.length}</div>
+                    <div class="sqp-insight-stat-label">Rank Recovery</div>
+                </div>
+                <div class="sqp-insight-stat gem" onclick="scrollToInsight('sqpGemTable')">
+                    <div class="sqp-insight-stat-icon">💎</div>
+                    <div class="sqp-insight-stat-count">${hiddenGems.length}</div>
+                    <div class="sqp-insight-stat-label">Hidden Gems</div>
+                </div>
+            `;
+            
+            // Render individual tables
+            renderSqpInsightTable('sqpScale', scaleOpps, 'scale');
+            renderSqpInsightTable('sqpDefend', defendPositions, 'defend');
+            renderSqpInsightTable('sqpCut', cutOptimize, 'cut');
+            renderSqpInsightTable('sqpQuickWin', quickWins, 'quickwin');
+            renderSqpInsightTable('sqpRecovery', rankRecovery, 'recovery');
+            renderSqpInsightTable('sqpGem', hiddenGems, 'gem');
+        }
+        
+        function renderSqpInsightTable(prefix, data, type) {
+            const summaryEl = document.getElementById(prefix + 'Summary');
+            const tableEl = document.getElementById(prefix + 'Table');
+            
+            // Sort by query volume descending
+            data.sort((a, b) => b.queryVolume - a.queryVolume);
+            
+            // Calculate totals
+            const totalSpend = data.reduce((s, r) => s + r.spend, 0);
+            const totalSales = data.reduce((s, r) => s + r.sales, 0);
+            const totalVolume = data.reduce((s, r) => s + r.queryVolume, 0);
+            
+            let summaryClass = '';
+            if (type === 'scale' || type === 'quickwin' || type === 'gem') summaryClass = 'good';
+            if (type === 'cut') summaryClass = 'bad';
+            
+            summaryEl.className = 'insight-summary ' + summaryClass;
+            summaryEl.innerHTML = `
+                <div class="insight-summary-item"><span class="insight-summary-label">Keywords:</span><span class="insight-summary-value">${formatNumber(data.length)}</span></div>
+                <div class="insight-summary-item"><span class="insight-summary-label">Query Volume:</span><span class="insight-summary-value">${formatNumber(totalVolume)}</span></div>
+                <div class="insight-summary-item"><span class="insight-summary-label">Spend:</span><span class="insight-summary-value">${formatCurrencyDecimal(totalSpend)}</span></div>
+                <div class="insight-summary-item"><span class="insight-summary-label">Sales:</span><span class="insight-summary-value">${formatCurrencyDecimal(totalSales)}</span></div>
+            `;
+            
+            if (data.length === 0) {
+                let emptyMsg = 'No keywords found matching criteria';
+                if (type === 'scale') emptyMsg = 'No scale opportunities found. Try adjusting your bids!';
+                if (type === 'cut') emptyMsg = '✅ Great! No bleeding keywords found';
+                tableEl.innerHTML = `<div class="insight-empty ${type === 'cut' ? 'good' : ''}">${emptyMsg}</div>`;
+                return;
+            }
+            
+            const marketplace = document.getElementById('marketplace')?.value || 'de';
+            
+            tableEl.innerHTML = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="min-width:160px">Keyword</th>
+                            <th>ASIN</th>
+                            <th>Query Vol</th>
+                            <th>Conv Δ</th>
+                            <th>Imp Share</th>
+                            <th>Rank Trend</th>
+                            <th>ACOS</th>
+                            <th>Spend</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${data.slice(0, 50).map(row => {
+                            const convDeltaClass = row.convDelta > 0 ? 'conv-delta-positive' : 'conv-delta-negative';
+                            const amazonUrl = 'https://www.amazon.' + marketplace + '/dp/' + row.asin;
+                            
+                            // Rank trend display
+                            let rankTrendHtml = '-';
+                            if (row.spRankStats && row.spRankStats.avg30d !== null) {
+                                const trend = row.spRankStats.trend;
+                                let trendIcon = '→';
+                                let trendColor = '#6b7280';
+                                if (trend === 'improving') { trendIcon = '↑'; trendColor = '#10b981'; }
+                                else if (trend === 'declining') { trendIcon = '↓'; trendColor = '#ef4444'; }
+                                rankTrendHtml = '<span style="color:' + trendColor + ';font-weight:600;">' + 
+                                    row.spRankStats.avg30d.toFixed(1) + ' ' + trendIcon + '</span>';
+                            }
+                            
+                            // Action badge
+                            let actionClass = 'review';
+                            if (row.action === 'Increase Bids' || row.action === 'Push Bids') actionClass = 'increase';
+                            else if (row.action === 'Reduce/Negate') actionClass = 'decrease';
+                            else if (row.action === 'Start Ads' || row.action === 'Dominate') actionClass = 'start';
+                            
+                            return `<tr>
+                                <td class="search-term-text" title="${escapeHtml(row.searchTerm)}">${escapeHtml(row.searchTerm)}</td>
+                                <td><a href="${amazonUrl}" target="_blank" class="sqp-asin-link">${row.asin}</a></td>
+                                <td style="text-align:right">${formatNumber(Math.round(row.queryVolume))}</td>
+                                <td class="${convDeltaClass}" style="text-align:right">${row.convDelta !== null ? (row.convDelta >= 0 ? '+' : '') + row.convDelta.toFixed(1) + '%' : '-'}</td>
+                                <td style="text-align:right">${row.impressionShareSqp.toFixed(1)}%</td>
+                                <td style="text-align:center">${rankTrendHtml}</td>
+                                <td class="${getAcosColorClass(row.acos)}" style="text-align:right">${row.acos === Infinity ? '∞' : formatPercent(row.acos, 1)}</td>
+                                <td style="text-align:right">${formatCurrencyDecimal(row.spend)}</td>
+                                <td><span class="insight-action-badge ${actionClass}">${row.action}</span></td>
+                            </tr>`;
+                        }).join('')}
+                    </tbody>
+                </table>
+                ${data.length > 50 ? `<div style="padding:0.5rem;text-align:center;color:#666;font-size:0.75rem;">Showing top 50 of ${formatNumber(data.length)} results</div>` : ''}
+            `;
+        }
+        
+        function scrollToInsight(elementId) {
+            const el = document.getElementById(elementId);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                el.parentElement.style.boxShadow = '0 0 0 3px #7c3aed';
+                setTimeout(() => {
+                    el.parentElement.style.boxShadow = '';
+                }, 2000);
+            }
+        }
+        
+        // Make SQP insights functions global
+        window.renderSqpStrategicInsights = renderSqpStrategicInsights;
+        window.scrollToInsight = scrollToInsight;
+
         // ==================== IMPRESSION SHARE TRENDS ====================
         
         const isDropZone = document.getElementById('isDropZone');
@@ -6574,6 +7043,11 @@
                     sqpResults.style.display = 'block';
                     sqpFileInfo.textContent = `Loaded: ${file.name} (${sqpData.length.toLocaleString()} rows)`;
                     renderSqpTable();
+                    
+                    // Also update Actionable Insights tab with SQP strategic insights
+                    if (typeof renderSqpStrategicInsights === 'function') {
+                        renderSqpStrategicInsights();
+                    }
                 } catch (err) {
                     console.error('Error parsing SQP CSV:', err);
                     alert('Error parsing SQP CSV file. Please check the format.');
