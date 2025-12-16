@@ -1037,31 +1037,6 @@
         .insight-pagination button:hover {
             background: #6d28d9;
         }
-        .resizable-col {
-            position: relative;
-        }
-        .col-resizer {
-            position: absolute;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            width: 5px;
-            cursor: col-resize;
-            background: transparent;
-            z-index: 10;
-        }
-        .col-resizer:hover {
-            background: #7c3aed;
-        }
-        .sqp-insight-table {
-            table-layout: fixed;
-        }
-        .sqp-insight-table th:first-child,
-        .sqp-insight-table td:first-child {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
         .insight-action-badge {
             display: inline-block;
             padding: 0.15rem 0.4rem;
@@ -5988,6 +5963,14 @@
                         aVal = a.queryVolume || 0;
                         bVal = b.queryVolume || 0;
                         break;
+                    case 'bestRank':
+                        aVal = a.spRankStats?.bestRank ?? 9999;
+                        bVal = b.spRankStats?.bestRank ?? 9999;
+                        break;
+                    case 'avg30dRank':
+                        aVal = a.spRankStats?.avg30d ?? 9999;
+                        bVal = b.spRankStats?.avg30d ?? 9999;
+                        break;
                     default:
                         aVal = a.asinPurchases || 0;
                         bVal = b.asinPurchases || 0;
@@ -6043,25 +6026,24 @@
             const hasMore = sortedData.length > showLimit;
             const remaining = sortedData.length - showLimit;
             
-            // Get saved column width for this table
-            const savedColWidth = sqpInsightColWidths[prefix];
-            const colWidthStyle = savedColWidth ? `width:${savedColWidth}px;min-width:${savedColWidth}px;max-width:${savedColWidth}px;` : 'min-width:100px;';
+            // Show rank columns for defend and recovery types
+            const showRankCols = (type === 'defend' || type === 'recovery');
             
             tableEl.innerHTML = `
                 <table class="sqp-insight-table" id="${prefix}TableInner">
                     <thead>
                         <tr>
-                            <th class="sqp-insight-sortable resizable-col" onclick="handleSqpInsightSort('${prefix}', 'searchTerm')" style="${colWidthStyle}position:relative;">
-                                Keyword ${getSortIconForCol('searchTerm')}
-                                <div class="col-resizer" onmousedown="initColResize(event, '${prefix}')"></div>
-                            </th>
+                            <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'searchTerm')" style="min-width:150px;">Keyword ${getSortIconForCol('searchTerm')}</th>
                             <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'asin')">ASIN / SKU ${getSortIconForCol('asin')}</th>
                             <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'queryVolume')" title="Search Query Volume">Vol ${getSortIconForCol('queryVolume')}</th>
+                            ${showRankCols ? `
+                            <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'bestRank')" title="Best Rank (last 30 days)">Best ${getSortIconForCol('bestRank')}</th>
+                            <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'avg30dRank')" title="30-Day Average Rank">30d Avg ${getSortIconForCol('avg30dRank')}</th>
+                            <th title="Rank Trend">Trend</th>
+                            ` : ''}
                             <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'asinPurchases')" title="Your ASIN Purchases">Purch ${getSortIconForCol('asinPurchases')}</th>
-                            <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'marketPurchases')" title="Total Market Purchases">Mkt ${getSortIconForCol('marketPurchases')}</th>
                             <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'purchaseShare')" title="Your Share of Purchases">Share ${getSortIconForCol('purchaseShare')}</th>
                             <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'convDelta')">Conv Δ ${getSortIconForCol('convDelta')}</th>
-                            <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'impressionShare')">Imp Sh ${getSortIconForCol('impressionShare')}</th>
                             <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'acos')">ACOS ${getSortIconForCol('acos')}</th>
                             <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'spend')">Spend ${getSortIconForCol('spend')}</th>
                             <th>Action</th>
@@ -6073,9 +6055,6 @@
                             const amazonUrl = 'https://www.amazon.' + marketplace + '/dp/' + row.asin;
                             const sku = row.sku || '';
                             
-                            // Style for keyword cell with saved width
-                            const keywordCellStyle = savedColWidth ? `max-width:${savedColWidth}px;` : '';
-                            
                             // Purchase share color coding
                             const purchaseShareClass = row.purchaseShare >= 10 ? 'conv-delta-positive' : (row.purchaseShare < 2 ? 'conv-delta-negative' : '');
                             
@@ -6085,18 +6064,30 @@
                             else if (row.action === 'Reduce/Negate') actionClass = 'decrease';
                             else if (row.action === 'Start Ads' || row.action === 'Dominate') actionClass = 'start';
                             
+                            // Rank data
+                            const rankStats = row.spRankStats || {};
+                            const bestRank = rankStats.bestRank;
+                            const avg30d = rankStats.avg30d;
+                            const rankTrend = rankStats.trend || 'stable';
+                            const trendIcon = rankTrend === 'improving' ? '↑' : (rankTrend === 'declining' ? '↓' : '→');
+                            const trendColor = rankTrend === 'improving' ? '#059669' : (rankTrend === 'declining' ? '#dc2626' : '#6b7280');
+                            const bestRankColor = bestRank <= 5 ? '#059669' : (bestRank <= 10 ? '#d97706' : '#dc2626');
+                            
                             return `<tr>
-                                <td class="search-term-text" style="${keywordCellStyle}" title="${escapeHtml(row.searchTerm)}">${escapeHtml(row.searchTerm)}</td>
+                                <td class="search-term-text" title="${escapeHtml(row.searchTerm)}">${escapeHtml(row.searchTerm)}</td>
                                 <td class="sqp-asin-sku-cell">
                                     <a href="${amazonUrl}" target="_blank" class="sqp-asin-link">${row.asin}</a>
                                     ${sku ? '<span class="sku" title="' + escapeHtml(sku) + '">' + escapeHtml(sku) + '</span>' : ''}
                                 </td>
                                 <td style="text-align:right;color:#6b7280">${formatNumber(Math.round(row.queryVolume || 0))}</td>
+                                ${showRankCols ? `
+                                <td style="text-align:center;font-weight:600;color:${bestRankColor}">${bestRank !== null ? bestRank : '-'}</td>
+                                <td style="text-align:center;color:#6b7280">${avg30d !== null ? avg30d.toFixed(1) : '-'}</td>
+                                <td style="text-align:center;font-weight:700;font-size:1rem;color:${trendColor}">${trendIcon}</td>
+                                ` : ''}
                                 <td style="text-align:right;font-weight:600;color:#059669">${formatNumber(Math.round(row.asinPurchases || 0))}</td>
-                                <td style="text-align:right;color:#6b7280">${formatNumber(Math.round(row.marketPurchases || 0))}</td>
                                 <td class="${purchaseShareClass}" style="text-align:right">${row.purchaseShare ? row.purchaseShare.toFixed(1) + '%' : '-'}</td>
                                 <td class="${convDeltaClass}" style="text-align:right">${row.convDelta !== null ? (row.convDelta >= 0 ? '+' : '') + row.convDelta.toFixed(1) + '%' : '-'}</td>
-                                <td style="text-align:right">${row.impressionShareSqp.toFixed(1)}%</td>
                                 <td class="${getAcosColorClass(row.acos)}" style="text-align:right">${row.acos === Infinity ? '∞' : formatPercent(row.acos, 1)}</td>
                                 <td style="text-align:right">${formatCurrencyDecimal(row.spend)}</td>
                                 <td><span class="insight-action-badge ${actionClass}">${row.action}</span></td>
@@ -6129,59 +6120,6 @@
             renderSqpStrategicInsights();
         }
         
-        // Column width storage - persists across re-renders
-        let sqpInsightColWidths = {};
-        
-        // Column resize functionality
-        let resizeState = { active: false, startX: 0, startWidth: 0, th: null, prefix: null };
-        
-        function initColResize(e, prefix) {
-            e.stopPropagation();
-            e.preventDefault();
-            
-            const th = e.target.parentElement;
-            resizeState = {
-                active: true,
-                startX: e.pageX,
-                startWidth: th.offsetWidth,
-                th: th,
-                prefix: prefix
-            };
-            
-            document.addEventListener('mousemove', doColResize);
-            document.addEventListener('mouseup', stopColResize);
-        }
-        
-        function doColResize(e) {
-            if (!resizeState.active) return;
-            
-            const diff = e.pageX - resizeState.startX;
-            const newWidth = Math.max(80, resizeState.startWidth + diff);
-            resizeState.th.style.width = newWidth + 'px';
-            resizeState.th.style.minWidth = newWidth + 'px';
-            
-            // Also update all td cells in the first column to match
-            const table = resizeState.th.closest('table');
-            if (table) {
-                table.querySelectorAll('tbody td:first-child').forEach(td => {
-                    td.style.width = newWidth + 'px';
-                    td.style.maxWidth = newWidth + 'px';
-                });
-            }
-        }
-        
-        function stopColResize() {
-            if (resizeState.active && resizeState.prefix) {
-                // Save the width for this table so it persists on re-render
-                const finalWidth = resizeState.th.offsetWidth;
-                sqpInsightColWidths[resizeState.prefix] = finalWidth;
-            }
-            resizeState.active = false;
-            resizeState.prefix = null;
-            document.removeEventListener('mousemove', doColResize);
-            document.removeEventListener('mouseup', stopColResize);
-        }
-        
         // Sort handler for SQP insight tables
         function handleSqpInsightSort(prefix, column) {
             if (!sqpInsightSortState[prefix]) {
@@ -6211,7 +6149,6 @@
         window.scrollToInsight = scrollToInsight;
         window.handleSqpInsightSort = handleSqpInsightSort;
         window.showMoreInsightRows = showMoreInsightRows;
-        window.initColResize = initColResize;
 
         // ==================== IMPRESSION SHARE TRENDS ====================
         
