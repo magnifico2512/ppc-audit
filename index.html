@@ -6043,11 +6043,15 @@
             const hasMore = sortedData.length > showLimit;
             const remaining = sortedData.length - showLimit;
             
+            // Get saved column width for this table
+            const savedColWidth = sqpInsightColWidths[prefix];
+            const colWidthStyle = savedColWidth ? `width:${savedColWidth}px;min-width:${savedColWidth}px;max-width:${savedColWidth}px;` : 'min-width:100px;';
+            
             tableEl.innerHTML = `
                 <table class="sqp-insight-table" id="${prefix}TableInner">
                     <thead>
                         <tr>
-                            <th class="sqp-insight-sortable resizable-col" onclick="handleSqpInsightSort('${prefix}', 'searchTerm')" style="min-width:100px;position:relative;">
+                            <th class="sqp-insight-sortable resizable-col" onclick="handleSqpInsightSort('${prefix}', 'searchTerm')" style="${colWidthStyle}position:relative;">
                                 Keyword ${getSortIconForCol('searchTerm')}
                                 <div class="col-resizer" onmousedown="initColResize(event, '${prefix}')"></div>
                             </th>
@@ -6069,6 +6073,9 @@
                             const amazonUrl = 'https://www.amazon.' + marketplace + '/dp/' + row.asin;
                             const sku = row.sku || '';
                             
+                            // Style for keyword cell with saved width
+                            const keywordCellStyle = savedColWidth ? `max-width:${savedColWidth}px;` : '';
+                            
                             // Purchase share color coding
                             const purchaseShareClass = row.purchaseShare >= 10 ? 'conv-delta-positive' : (row.purchaseShare < 2 ? 'conv-delta-negative' : '');
                             
@@ -6079,7 +6086,7 @@
                             else if (row.action === 'Start Ads' || row.action === 'Dominate') actionClass = 'start';
                             
                             return `<tr>
-                                <td class="search-term-text" title="${escapeHtml(row.searchTerm)}">${escapeHtml(row.searchTerm)}</td>
+                                <td class="search-term-text" style="${keywordCellStyle}" title="${escapeHtml(row.searchTerm)}">${escapeHtml(row.searchTerm)}</td>
                                 <td class="sqp-asin-sku-cell">
                                     <a href="${amazonUrl}" target="_blank" class="sqp-asin-link">${row.asin}</a>
                                     ${sku ? '<span class="sku" title="' + escapeHtml(sku) + '">' + escapeHtml(sku) + '</span>' : ''}
@@ -6122,8 +6129,11 @@
             renderSqpStrategicInsights();
         }
         
+        // Column width storage - persists across re-renders
+        let sqpInsightColWidths = {};
+        
         // Column resize functionality
-        let resizeState = { active: false, startX: 0, startWidth: 0, th: null };
+        let resizeState = { active: false, startX: 0, startWidth: 0, th: null, prefix: null };
         
         function initColResize(e, prefix) {
             e.stopPropagation();
@@ -6134,7 +6144,8 @@
                 active: true,
                 startX: e.pageX,
                 startWidth: th.offsetWidth,
-                th: th
+                th: th,
+                prefix: prefix
             };
             
             document.addEventListener('mousemove', doColResize);
@@ -6148,10 +6159,25 @@
             const newWidth = Math.max(80, resizeState.startWidth + diff);
             resizeState.th.style.width = newWidth + 'px';
             resizeState.th.style.minWidth = newWidth + 'px';
+            
+            // Also update all td cells in the first column to match
+            const table = resizeState.th.closest('table');
+            if (table) {
+                table.querySelectorAll('tbody td:first-child').forEach(td => {
+                    td.style.width = newWidth + 'px';
+                    td.style.maxWidth = newWidth + 'px';
+                });
+            }
         }
         
         function stopColResize() {
+            if (resizeState.active && resizeState.prefix) {
+                // Save the width for this table so it persists on re-render
+                const finalWidth = resizeState.th.offsetWidth;
+                sqpInsightColWidths[resizeState.prefix] = finalWidth;
+            }
             resizeState.active = false;
+            resizeState.prefix = null;
             document.removeEventListener('mousemove', doColResize);
             document.removeEventListener('mouseup', stopColResize);
         }
