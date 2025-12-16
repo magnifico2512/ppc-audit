@@ -807,6 +807,9 @@
             overflow-y: auto;
             overflow-x: auto;
         }
+        .sqp-insights-section .insight-table-container {
+            max-height: 500px;
+        }
         .insight-table-container table {
             font-size: 0.7rem;
         }
@@ -1005,6 +1008,56 @@
             color: #059669;
             font-family: 'JetBrains Mono', monospace;
             max-width: 80px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .insight-pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 0.5rem 1rem;
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+        .insight-pagination button {
+            background: #7c3aed;
+            color: white;
+            border: none;
+            padding: 0.35rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .insight-pagination button:hover {
+            background: #6d28d9;
+        }
+        .resizable-col {
+            position: relative;
+        }
+        .col-resizer {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            cursor: col-resize;
+            background: transparent;
+            z-index: 10;
+        }
+        .col-resizer:hover {
+            background: #7c3aed;
+        }
+        .sqp-insight-table {
+            table-layout: fixed;
+        }
+        .sqp-insight-table th:first-child,
+        .sqp-insight-table td:first-child {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -5873,12 +5926,23 @@
             renderSqpInsightTable('sqpGem', hiddenGems, 'gem');
         }
         
+        // Track how many rows to show per table
+        let sqpInsightShowLimit = {
+            sqpScale: 50,
+            sqpDefend: 50,
+            sqpCut: 50,
+            sqpQuickWin: 50,
+            sqpRecovery: 50,
+            sqpGem: 50
+        };
+        
         function renderSqpInsightTable(prefix, data, type) {
             const summaryEl = document.getElementById(prefix + 'Summary');
             const tableEl = document.getElementById(prefix + 'Table');
             
             // Get sort state for this table
             const sortState = sqpInsightSortState[prefix] || { column: 'asinPurchases', direction: 'desc' };
+            const showLimit = sqpInsightShowLimit[prefix] || 50;
             
             // Sort data based on current sort state
             const sortedData = [...data].sort((a, b) => {
@@ -5949,6 +6013,7 @@
             summaryEl.className = 'insight-summary ' + summaryClass;
             summaryEl.innerHTML = `
                 <div class="insight-summary-item"><span class="insight-summary-label">Keywords:</span><span class="insight-summary-value">${formatNumber(data.length)}</span></div>
+                <div class="insight-summary-item"><span class="insight-summary-label">Query Volume:</span><span class="insight-summary-value">${formatNumber(Math.round(totalVolume))}</span></div>
                 <div class="insight-summary-item"><span class="insight-summary-label">Your Purchases:</span><span class="insight-summary-value">${formatNumber(Math.round(totalAsinPurchases))}</span></div>
                 <div class="insight-summary-item"><span class="insight-summary-label">Market Purchases:</span><span class="insight-summary-value">${formatNumber(Math.round(totalMarketPurchases))}</span></div>
                 <div class="insight-summary-item"><span class="insight-summary-label">Spend:</span><span class="insight-summary-value">${formatCurrencyDecimal(totalSpend)}</span></div>
@@ -5974,12 +6039,20 @@
                     : '<span class="sort-icon active">▲</span>';
             };
             
+            const displayData = sortedData.slice(0, showLimit);
+            const hasMore = sortedData.length > showLimit;
+            const remaining = sortedData.length - showLimit;
+            
             tableEl.innerHTML = `
-                <table>
+                <table class="sqp-insight-table" id="${prefix}TableInner">
                     <thead>
                         <tr>
-                            <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'searchTerm')" style="min-width:120px">Keyword ${getSortIconForCol('searchTerm')}</th>
+                            <th class="sqp-insight-sortable resizable-col" onclick="handleSqpInsightSort('${prefix}', 'searchTerm')" style="min-width:100px;position:relative;">
+                                Keyword ${getSortIconForCol('searchTerm')}
+                                <div class="col-resizer" onmousedown="initColResize(event, '${prefix}')"></div>
+                            </th>
                             <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'asin')">ASIN / SKU ${getSortIconForCol('asin')}</th>
+                            <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'queryVolume')" title="Search Query Volume">Vol ${getSortIconForCol('queryVolume')}</th>
                             <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'asinPurchases')" title="Your ASIN Purchases">Purch ${getSortIconForCol('asinPurchases')}</th>
                             <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'marketPurchases')" title="Total Market Purchases">Mkt ${getSortIconForCol('marketPurchases')}</th>
                             <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'purchaseShare')" title="Your Share of Purchases">Share ${getSortIconForCol('purchaseShare')}</th>
@@ -5991,7 +6064,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        ${sortedData.slice(0, 50).map(row => {
+                        ${displayData.map(row => {
                             const convDeltaClass = row.convDelta > 0 ? 'conv-delta-positive' : 'conv-delta-negative';
                             const amazonUrl = 'https://www.amazon.' + marketplace + '/dp/' + row.asin;
                             const sku = row.sku || '';
@@ -6011,6 +6084,7 @@
                                     <a href="${amazonUrl}" target="_blank" class="sqp-asin-link">${row.asin}</a>
                                     ${sku ? '<span class="sku" title="' + escapeHtml(sku) + '">' + escapeHtml(sku) + '</span>' : ''}
                                 </td>
+                                <td style="text-align:right;color:#6b7280">${formatNumber(Math.round(row.queryVolume || 0))}</td>
                                 <td style="text-align:right;font-weight:600;color:#059669">${formatNumber(Math.round(row.asinPurchases || 0))}</td>
                                 <td style="text-align:right;color:#6b7280">${formatNumber(Math.round(row.marketPurchases || 0))}</td>
                                 <td class="${purchaseShareClass}" style="text-align:right">${row.purchaseShare ? row.purchaseShare.toFixed(1) + '%' : '-'}</td>
@@ -6023,8 +6097,63 @@
                         }).join('')}
                     </tbody>
                 </table>
-                ${data.length > 50 ? `<div style="padding:0.5rem;text-align:center;color:#666;font-size:0.75rem;">Showing top 50 of ${formatNumber(data.length)} results</div>` : ''}
+                ${hasMore ? `
+                    <div class="insight-pagination">
+                        <span>Showing ${showLimit} of ${formatNumber(sortedData.length)} results</span>
+                        <button onclick="showMoreInsightRows('${prefix}', 50)">Show 50 More</button>
+                        <button onclick="showMoreInsightRows('${prefix}', ${sortedData.length})">Show All (${formatNumber(sortedData.length)})</button>
+                    </div>
+                ` : (sortedData.length > 50 ? `
+                    <div class="insight-pagination">
+                        <span>Showing all ${formatNumber(sortedData.length)} results</span>
+                        <button onclick="showMoreInsightRows('${prefix}', 50, true)">Show Less</button>
+                    </div>
+                ` : '')}
             `;
+        }
+        
+        // Show more rows handler
+        function showMoreInsightRows(prefix, count, reset = false) {
+            if (reset) {
+                sqpInsightShowLimit[prefix] = 50;
+            } else {
+                sqpInsightShowLimit[prefix] = count;
+            }
+            renderSqpStrategicInsights();
+        }
+        
+        // Column resize functionality
+        let resizeState = { active: false, startX: 0, startWidth: 0, th: null };
+        
+        function initColResize(e, prefix) {
+            e.stopPropagation();
+            e.preventDefault();
+            
+            const th = e.target.parentElement;
+            resizeState = {
+                active: true,
+                startX: e.pageX,
+                startWidth: th.offsetWidth,
+                th: th
+            };
+            
+            document.addEventListener('mousemove', doColResize);
+            document.addEventListener('mouseup', stopColResize);
+        }
+        
+        function doColResize(e) {
+            if (!resizeState.active) return;
+            
+            const diff = e.pageX - resizeState.startX;
+            const newWidth = Math.max(80, resizeState.startWidth + diff);
+            resizeState.th.style.width = newWidth + 'px';
+            resizeState.th.style.minWidth = newWidth + 'px';
+        }
+        
+        function stopColResize() {
+            resizeState.active = false;
+            document.removeEventListener('mousemove', doColResize);
+            document.removeEventListener('mouseup', stopColResize);
         }
         
         // Sort handler for SQP insight tables
@@ -6055,6 +6184,8 @@
         window.renderSqpStrategicInsights = renderSqpStrategicInsights;
         window.scrollToInsight = scrollToInsight;
         window.handleSqpInsightSort = handleSqpInsightSort;
+        window.showMoreInsightRows = showMoreInsightRows;
+        window.initColResize = initColResize;
 
         // ==================== IMPRESSION SHARE TRENDS ====================
         
