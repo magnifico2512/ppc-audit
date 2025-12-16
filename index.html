@@ -942,6 +942,37 @@
             opacity: 0.9;
             font-weight: normal;
         }
+        .insight-filters-row {
+            display: flex;
+            gap: 0.75rem;
+            padding: 0.5rem 1rem;
+            background: #f8fafc;
+            flex-wrap: wrap;
+            align-items: center;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .insight-filters-row label {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.7rem;
+            color: #475569;
+            font-weight: 500;
+        }
+        .insight-filters-row input[type="number"] {
+            width: 50px;
+            padding: 0.2rem 0.3rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-family: 'JetBrains Mono', monospace;
+            text-align: center;
+        }
+        .insight-filters-row input[type="number"]:focus {
+            outline: none;
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.2);
+        }
         .insight-criteria {
             display: flex;
             gap: 0.5rem;
@@ -956,6 +987,27 @@
             font-size: 0.65rem;
             font-family: 'JetBrains Mono', monospace;
             color: #475569;
+        }
+        .sqp-insight-sortable {
+            cursor: pointer;
+            user-select: none;
+        }
+        .sqp-insight-sortable:hover {
+            background: #e2e8f0;
+        }
+        .sqp-asin-sku-cell {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+        .sqp-asin-sku-cell .sku {
+            font-size: 0.6rem;
+            color: #059669;
+            font-family: 'JetBrains Mono', monospace;
+            max-width: 80px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
         .insight-action-badge {
             display: inline-block;
@@ -2216,11 +2268,12 @@
                                 <h3>🚀 Scale Opportunities</h3>
                                 <p class="insight-description">You outperform the market but don't have enough traffic. Increase bids aggressively!</p>
                             </div>
-                            <div class="insight-criteria">
-                                <span>Conv Delta &gt; +3%</span>
-                                <span>Imp Share &lt; 15%</span>
-                                <span>ACOS &lt; 40%</span>
-                                <span style="background:#dcfce7;color:#166534">Min 5 ASIN Purchases</span>
+                            <div class="insight-filters-row">
+                                <label>Conv Δ &gt;<input type="number" id="sqpScaleConvDelta" value="3" step="0.5" min="0">%</label>
+                                <label>Imp Share &lt;<input type="number" id="sqpScaleImpShare" value="15" step="1" min="0">%</label>
+                                <label>ACOS &lt;<input type="number" id="sqpScaleAcos" value="40" step="5" min="0">%</label>
+                                <label>Min Purchases ≥<input type="number" id="sqpScaleMinPurch" value="5" step="1" min="1"></label>
+                                <button class="insight-apply-btn" onclick="renderSqpStrategicInsights()">Apply</button>
                             </div>
                             <div class="insight-summary" id="sqpScaleSummary"></div>
                             <div class="insight-table-container" id="sqpScaleTable"></div>
@@ -2232,10 +2285,11 @@
                                 <h3>🛡️ Defend Position</h3>
                                 <p class="insight-description">Profitable keywords with declining rank. Increase bids before you lose to competitors!</p>
                             </div>
-                            <div class="insight-criteria">
-                                <span>Rank Trend: ↓ Declining</span>
-                                <span>ACOS &lt; 35%</span>
-                                <span style="background:#dcfce7;color:#166534">Min 3 ASIN Purchases</span>
+                            <div class="insight-filters-row">
+                                <label>ACOS &lt;<input type="number" id="sqpDefendAcos" value="35" step="5" min="0">%</label>
+                                <label>Min Spend &gt;<input type="number" id="sqpDefendMinSpend" value="5" step="1" min="0">€</label>
+                                <label>Min Purchases ≥<input type="number" id="sqpDefendMinPurch" value="3" step="1" min="1"></label>
+                                <button class="insight-apply-btn" onclick="renderSqpStrategicInsights()">Apply</button>
                             </div>
                             <div class="insight-summary" id="sqpDefendSummary"></div>
                             <div class="insight-table-container" id="sqpDefendTable"></div>
@@ -2247,11 +2301,12 @@
                                 <h3>✂️ Cut or Optimize</h3>
                                 <p class="insight-description">You underperform the market and lose money. Reduce bids, negate, or fix listing!</p>
                             </div>
-                            <div class="insight-criteria">
-                                <span>Conv Delta &lt; -2%</span>
-                                <span>ACOS &gt; 50%</span>
-                                <span>Spend &gt; €20</span>
-                                <span style="background:#dcfce7;color:#166534">Min 10 Mkt Purchases</span>
+                            <div class="insight-filters-row">
+                                <label>Conv Δ &lt;<input type="number" id="sqpCutConvDelta" value="-2" step="0.5" max="0">%</label>
+                                <label>ACOS &gt;<input type="number" id="sqpCutAcos" value="50" step="5" min="0">%</label>
+                                <label>Spend &gt;<input type="number" id="sqpCutMinSpend" value="20" step="5" min="0">€</label>
+                                <label>Min Mkt Purch ≥<input type="number" id="sqpCutMinMktPurch" value="10" step="1" min="1"></label>
+                                <button class="insight-apply-btn" onclick="renderSqpStrategicInsights()">Apply</button>
                             </div>
                             <div class="insight-summary" id="sqpCutSummary"></div>
                             <div class="insight-table-container" id="sqpCutTable"></div>
@@ -2263,11 +2318,12 @@
                                 <h3>🎯 Quick Wins</h3>
                                 <p class="insight-description">High organic conversion but low ad investment. Start or increase advertising!</p>
                             </div>
-                            <div class="insight-criteria">
-                                <span>ASIN Conv &gt; 15%</span>
-                                <span>Spend &lt; €10</span>
-                                <span>Query Vol &gt; 1000</span>
-                                <span style="background:#dcfce7;color:#166534">Min 5 ASIN Purchases</span>
+                            <div class="insight-filters-row">
+                                <label>ASIN Conv &gt;<input type="number" id="sqpQuickWinConv" value="15" step="1" min="0">%</label>
+                                <label>Spend &lt;<input type="number" id="sqpQuickWinSpend" value="10" step="5" min="0">€</label>
+                                <label>Query Vol &gt;<input type="number" id="sqpQuickWinVol" value="1000" step="100" min="0"></label>
+                                <label>Min Purchases ≥<input type="number" id="sqpQuickWinMinPurch" value="5" step="1" min="1"></label>
+                                <button class="insight-apply-btn" onclick="renderSqpStrategicInsights()">Apply</button>
                             </div>
                             <div class="insight-summary" id="sqpQuickWinSummary"></div>
                             <div class="insight-table-container" id="sqpQuickWinTable"></div>
@@ -2279,10 +2335,11 @@
                                 <h3>📉 Rank Recovery Needed</h3>
                                 <p class="insight-description">You've lost significant ranking positions. Push bids to recover visibility!</p>
                             </div>
-                            <div class="insight-criteria">
-                                <span>30d Avg - Best &gt; 5</span>
-                                <span>Query Vol &gt; 500</span>
-                                <span>Best Rank ≤ 10</span>
+                            <div class="insight-filters-row">
+                                <label>Rank Loss &gt;<input type="number" id="sqpRecoveryRankDiff" value="5" step="1" min="1"></label>
+                                <label>Query Vol &gt;<input type="number" id="sqpRecoveryVol" value="500" step="100" min="0"></label>
+                                <label>Best Rank ≤<input type="number" id="sqpRecoveryBestRank" value="10" step="1" min="1"></label>
+                                <button class="insight-apply-btn" onclick="renderSqpStrategicInsights()">Apply</button>
                             </div>
                             <div class="insight-summary" id="sqpRecoverySummary"></div>
                             <div class="insight-table-container" id="sqpRecoveryTable"></div>
@@ -2294,11 +2351,11 @@
                                 <h3>💎 Hidden Gems</h3>
                                 <p class="insight-description">Low competition keywords where you convert well. Dominate these niches!</p>
                             </div>
-                            <div class="insight-criteria">
-                                <span>Market CTR &lt; 2%</span>
-                                <span>ASIN Conv &gt; Market Conv</span>
-                                <span>Query Vol &gt; 500</span>
-                                <span style="background:#dcfce7;color:#166534">Min 5 ASIN Purchases</span>
+                            <div class="insight-filters-row">
+                                <label>Market CTR &lt;<input type="number" id="sqpGemMktCtr" value="2" step="0.5" min="0">%</label>
+                                <label>Query Vol &gt;<input type="number" id="sqpGemVol" value="500" step="100" min="0"></label>
+                                <label>Min Purchases ≥<input type="number" id="sqpGemMinPurch" value="5" step="1" min="1"></label>
+                                <button class="insight-apply-btn" onclick="renderSqpStrategicInsights()">Apply</button>
                             </div>
                             <div class="insight-summary" id="sqpGemSummary"></div>
                             <div class="insight-table-container" id="sqpGemTable"></div>
@@ -5661,6 +5718,16 @@
 
         // ==================== SQP STRATEGIC INSIGHTS ====================
         
+        // Sort state for SQP insight tables
+        let sqpInsightSortState = {
+            sqpScale: { column: 'asinPurchases', direction: 'desc' },
+            sqpDefend: { column: 'asinPurchases', direction: 'desc' },
+            sqpCut: { column: 'spend', direction: 'desc' },
+            sqpQuickWin: { column: 'asinPurchases', direction: 'desc' },
+            sqpRecovery: { column: 'queryVolume', direction: 'desc' },
+            sqpGem: { column: 'asinPurchases', direction: 'desc' }
+        };
+        
         function renderSqpStrategicInsights() {
             const section = document.getElementById('sqpInsightsSection');
             if (!sqpCombinedData || sqpCombinedData.length === 0) {
@@ -5673,9 +5740,33 @@
             // Get end date for rank calculations
             const endDate = currentSqpEndDate || new Date();
             
-            // Minimum thresholds for statistical significance
-            const MIN_ASIN_PURCHASES = 5;  // Minimum purchases to be statistically relevant
-            const MIN_MARKET_PURCHASES = 10; // Minimum market purchases for comparison
+            // Read filter values from inputs (with defaults)
+            const scaleConvDelta = parseFloat(document.getElementById('sqpScaleConvDelta')?.value) || 3;
+            const scaleImpShare = parseFloat(document.getElementById('sqpScaleImpShare')?.value) || 15;
+            const scaleAcos = parseFloat(document.getElementById('sqpScaleAcos')?.value) || 40;
+            const scaleMinPurch = parseFloat(document.getElementById('sqpScaleMinPurch')?.value) || 5;
+            
+            const defendAcos = parseFloat(document.getElementById('sqpDefendAcos')?.value) || 35;
+            const defendMinSpend = parseFloat(document.getElementById('sqpDefendMinSpend')?.value) || 5;
+            const defendMinPurch = parseFloat(document.getElementById('sqpDefendMinPurch')?.value) || 3;
+            
+            const cutConvDelta = parseFloat(document.getElementById('sqpCutConvDelta')?.value) || -2;
+            const cutAcos = parseFloat(document.getElementById('sqpCutAcos')?.value) || 50;
+            const cutMinSpend = parseFloat(document.getElementById('sqpCutMinSpend')?.value) || 20;
+            const cutMinMktPurch = parseFloat(document.getElementById('sqpCutMinMktPurch')?.value) || 10;
+            
+            const quickWinConv = parseFloat(document.getElementById('sqpQuickWinConv')?.value) || 15;
+            const quickWinSpend = parseFloat(document.getElementById('sqpQuickWinSpend')?.value) || 10;
+            const quickWinVol = parseFloat(document.getElementById('sqpQuickWinVol')?.value) || 1000;
+            const quickWinMinPurch = parseFloat(document.getElementById('sqpQuickWinMinPurch')?.value) || 5;
+            
+            const recoveryRankDiff = parseFloat(document.getElementById('sqpRecoveryRankDiff')?.value) || 5;
+            const recoveryVol = parseFloat(document.getElementById('sqpRecoveryVol')?.value) || 500;
+            const recoveryBestRank = parseFloat(document.getElementById('sqpRecoveryBestRank')?.value) || 10;
+            
+            const gemMktCtr = parseFloat(document.getElementById('sqpGemMktCtr')?.value) || 2;
+            const gemVol = parseFloat(document.getElementById('sqpGemVol')?.value) || 500;
+            const gemMinPurch = parseFloat(document.getElementById('sqpGemMinPurch')?.value) || 5;
             
             // Categorize keywords
             const scaleOpps = [];
@@ -5696,49 +5787,44 @@
                 const marketPurchases = row.purchasesTotalCount || 0;
                 const purchaseShare = marketPurchases > 0 ? (asinPurchases / marketPurchases * 100) : 0;
                 
-                // 🚀 Scale Opportunities: Conv Delta > +3%, Imp Share < 15%, ACOS < 40%
-                // NOW REQUIRES: Minimum 5 ASIN purchases for statistical significance
-                if (row.convDelta !== null && row.convDelta > 3 && 
-                    row.impressionShareSqp < 15 && 
-                    row.acos < 0.4 && row.acos !== Infinity && row.spend > 0 &&
-                    asinPurchases >= MIN_ASIN_PURCHASES) {
+                // 🚀 Scale Opportunities
+                if (row.convDelta !== null && row.convDelta > scaleConvDelta && 
+                    row.impressionShareSqp < scaleImpShare && 
+                    row.acos < (scaleAcos / 100) && row.acos !== Infinity && row.spend > 0 &&
+                    asinPurchases >= scaleMinPurch) {
                     scaleOpps.push({ ...row, spRankStats, asinPurchases, marketPurchases, purchaseShare, action: 'Increase Bids' });
                 }
                 
-                // 🛡️ Defend Position: Rank declining, ACOS < 35%, has SP data
-                // Requires minimum purchases for validity
+                // 🛡️ Defend Position
                 if (rankTrend === 'declining' && 
-                    row.acos < 0.35 && row.acos !== Infinity && row.spend > 5 &&
-                    asinPurchases >= 3) {
+                    row.acos < (defendAcos / 100) && row.acos !== Infinity && row.spend > defendMinSpend &&
+                    asinPurchases >= defendMinPurch) {
                     defendPositions.push({ ...row, spRankStats, asinPurchases, marketPurchases, purchaseShare, action: 'Increase Bids' });
                 }
                 
-                // ✂️ Cut or Optimize: Conv Delta < -2%, ACOS > 50%, Spend > €20
-                // For cutting, we care more about spend than purchases
-                if (row.convDelta !== null && row.convDelta < -2 && 
-                    row.acos > 0.5 && row.spend > 20 &&
-                    marketPurchases >= MIN_MARKET_PURCHASES) {
+                // ✂️ Cut or Optimize
+                if (row.convDelta !== null && row.convDelta < cutConvDelta && 
+                    row.acos > (cutAcos / 100) && row.spend > cutMinSpend &&
+                    marketPurchases >= cutMinMktPurch) {
                     cutOptimize.push({ ...row, spRankStats, asinPurchases, marketPurchases, purchaseShare, action: 'Reduce/Negate' });
                 }
                 
-                // 🎯 Quick Wins: ASIN Conv > 15%, Low spend, Good query volume
-                // Requires minimum purchases to prove conversion is real
-                if (row.asinConvRate > 15 && row.spend < 10 && row.queryVolume > 1000 &&
-                    asinPurchases >= MIN_ASIN_PURCHASES) {
+                // 🎯 Quick Wins
+                if (row.asinConvRate > quickWinConv && row.spend < quickWinSpend && row.queryVolume > quickWinVol &&
+                    asinPurchases >= quickWinMinPurch) {
                     quickWins.push({ ...row, spRankStats, asinPurchases, marketPurchases, purchaseShare, action: 'Start Ads' });
                 }
                 
-                // 📉 Rank Recovery: Lost significant positions
-                if (spRankStats.bestRank !== null && spRankStats.bestRank <= 10 && 
-                    rankDiff > 5 && row.queryVolume > 500) {
+                // 📉 Rank Recovery
+                if (spRankStats.bestRank !== null && spRankStats.bestRank <= recoveryBestRank && 
+                    rankDiff > recoveryRankDiff && row.queryVolume > recoveryVol) {
                     rankRecovery.push({ ...row, spRankStats, asinPurchases, marketPurchases, purchaseShare, rankDiff, action: 'Push Bids' });
                 }
                 
-                // 💎 Hidden Gems: Low market CTR, you convert better
-                // Requires minimum purchases for validity
-                if (row.marketCtr < 2 && row.convDelta !== null && row.convDelta > 0 && 
-                    row.queryVolume > 500 &&
-                    asinPurchases >= MIN_ASIN_PURCHASES) {
+                // 💎 Hidden Gems
+                if (row.marketCtr < gemMktCtr && row.convDelta !== null && row.convDelta > 0 && 
+                    row.queryVolume > gemVol &&
+                    asinPurchases >= gemMinPurch) {
                     hiddenGems.push({ ...row, spRankStats, asinPurchases, marketPurchases, purchaseShare, action: 'Dominate' });
                 }
             });
@@ -5791,8 +5877,63 @@
             const summaryEl = document.getElementById(prefix + 'Summary');
             const tableEl = document.getElementById(prefix + 'Table');
             
-            // Sort by ASIN purchases descending (most statistically significant first)
-            data.sort((a, b) => (b.asinPurchases || 0) - (a.asinPurchases || 0));
+            // Get sort state for this table
+            const sortState = sqpInsightSortState[prefix] || { column: 'asinPurchases', direction: 'desc' };
+            
+            // Sort data based on current sort state
+            const sortedData = [...data].sort((a, b) => {
+                let aVal, bVal;
+                switch (sortState.column) {
+                    case 'searchTerm':
+                        aVal = a.searchTerm.toLowerCase();
+                        bVal = b.searchTerm.toLowerCase();
+                        break;
+                    case 'asin':
+                        aVal = a.asin;
+                        bVal = b.asin;
+                        break;
+                    case 'asinPurchases':
+                        aVal = a.asinPurchases || 0;
+                        bVal = b.asinPurchases || 0;
+                        break;
+                    case 'marketPurchases':
+                        aVal = a.marketPurchases || 0;
+                        bVal = b.marketPurchases || 0;
+                        break;
+                    case 'purchaseShare':
+                        aVal = a.purchaseShare || 0;
+                        bVal = b.purchaseShare || 0;
+                        break;
+                    case 'convDelta':
+                        aVal = a.convDelta !== null ? a.convDelta : -9999;
+                        bVal = b.convDelta !== null ? b.convDelta : -9999;
+                        break;
+                    case 'impressionShare':
+                        aVal = a.impressionShareSqp || 0;
+                        bVal = b.impressionShareSqp || 0;
+                        break;
+                    case 'acos':
+                        aVal = a.acos === Infinity ? 9999 : (a.acos || 0);
+                        bVal = b.acos === Infinity ? 9999 : (b.acos || 0);
+                        break;
+                    case 'spend':
+                        aVal = a.spend || 0;
+                        bVal = b.spend || 0;
+                        break;
+                    case 'queryVolume':
+                        aVal = a.queryVolume || 0;
+                        bVal = b.queryVolume || 0;
+                        break;
+                    default:
+                        aVal = a.asinPurchases || 0;
+                        bVal = b.asinPurchases || 0;
+                }
+                
+                if (typeof aVal === 'string') {
+                    return sortState.direction === 'asc' ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
+                }
+                return sortState.direction === 'asc' ? aVal - bVal : bVal - aVal;
+            });
             
             // Calculate totals
             const totalSpend = data.reduce((s, r) => s + r.spend, 0);
@@ -5815,36 +5956,45 @@
             `;
             
             if (data.length === 0) {
-                let emptyMsg = 'No keywords found matching criteria (min 5 purchases required)';
-                if (type === 'scale') emptyMsg = 'No scale opportunities with sufficient purchase data (min 5 ASIN purchases required)';
+                let emptyMsg = 'No keywords found matching criteria';
+                if (type === 'scale') emptyMsg = 'No scale opportunities with sufficient purchase data';
                 if (type === 'cut') emptyMsg = '✅ Great! No bleeding keywords found';
-                if (type === 'quickwin') emptyMsg = 'No quick wins with sufficient purchase data (min 5 ASIN purchases required)';
+                if (type === 'quickwin') emptyMsg = 'No quick wins with sufficient purchase data';
                 tableEl.innerHTML = `<div class="insight-empty ${type === 'cut' ? 'good' : ''}">${emptyMsg}</div>`;
                 return;
             }
             
             const marketplace = document.getElementById('marketplace')?.value || 'de';
             
+            // Helper for sort icon
+            const getSortIconForCol = (col) => {
+                if (sortState.column !== col) return '<span class="sort-icon">⇅</span>';
+                return sortState.direction === 'desc' 
+                    ? '<span class="sort-icon active">▼</span>' 
+                    : '<span class="sort-icon active">▲</span>';
+            };
+            
             tableEl.innerHTML = `
                 <table>
                     <thead>
                         <tr>
-                            <th style="min-width:140px">Keyword</th>
-                            <th>ASIN</th>
-                            <th title="Your ASIN Purchases">Your Purch</th>
-                            <th title="Total Market Purchases">Mkt Purch</th>
-                            <th title="Your Share of Purchases">Share</th>
-                            <th>Conv Δ</th>
-                            <th>Imp Share</th>
-                            <th>ACOS</th>
-                            <th>Spend</th>
+                            <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'searchTerm')" style="min-width:120px">Keyword ${getSortIconForCol('searchTerm')}</th>
+                            <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'asin')">ASIN / SKU ${getSortIconForCol('asin')}</th>
+                            <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'asinPurchases')" title="Your ASIN Purchases">Purch ${getSortIconForCol('asinPurchases')}</th>
+                            <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'marketPurchases')" title="Total Market Purchases">Mkt ${getSortIconForCol('marketPurchases')}</th>
+                            <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'purchaseShare')" title="Your Share of Purchases">Share ${getSortIconForCol('purchaseShare')}</th>
+                            <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'convDelta')">Conv Δ ${getSortIconForCol('convDelta')}</th>
+                            <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'impressionShare')">Imp Sh ${getSortIconForCol('impressionShare')}</th>
+                            <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'acos')">ACOS ${getSortIconForCol('acos')}</th>
+                            <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'spend')">Spend ${getSortIconForCol('spend')}</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        ${data.slice(0, 50).map(row => {
+                        ${sortedData.slice(0, 50).map(row => {
                             const convDeltaClass = row.convDelta > 0 ? 'conv-delta-positive' : 'conv-delta-negative';
                             const amazonUrl = 'https://www.amazon.' + marketplace + '/dp/' + row.asin;
+                            const sku = row.sku || '';
                             
                             // Purchase share color coding
                             const purchaseShareClass = row.purchaseShare >= 10 ? 'conv-delta-positive' : (row.purchaseShare < 2 ? 'conv-delta-negative' : '');
@@ -5857,7 +6007,10 @@
                             
                             return `<tr>
                                 <td class="search-term-text" title="${escapeHtml(row.searchTerm)}">${escapeHtml(row.searchTerm)}</td>
-                                <td><a href="${amazonUrl}" target="_blank" class="sqp-asin-link">${row.asin}</a></td>
+                                <td class="sqp-asin-sku-cell">
+                                    <a href="${amazonUrl}" target="_blank" class="sqp-asin-link">${row.asin}</a>
+                                    ${sku ? '<span class="sku" title="' + escapeHtml(sku) + '">' + escapeHtml(sku) + '</span>' : ''}
+                                </td>
                                 <td style="text-align:right;font-weight:600;color:#059669">${formatNumber(Math.round(row.asinPurchases || 0))}</td>
                                 <td style="text-align:right;color:#6b7280">${formatNumber(Math.round(row.marketPurchases || 0))}</td>
                                 <td class="${purchaseShareClass}" style="text-align:right">${row.purchaseShare ? row.purchaseShare.toFixed(1) + '%' : '-'}</td>
@@ -5874,6 +6027,19 @@
             `;
         }
         
+        // Sort handler for SQP insight tables
+        function handleSqpInsightSort(prefix, column) {
+            if (!sqpInsightSortState[prefix]) {
+                sqpInsightSortState[prefix] = { column: column, direction: 'desc' };
+            } else if (sqpInsightSortState[prefix].column === column) {
+                sqpInsightSortState[prefix].direction = sqpInsightSortState[prefix].direction === 'desc' ? 'asc' : 'desc';
+            } else {
+                sqpInsightSortState[prefix] = { column: column, direction: 'desc' };
+            }
+            // Re-render the insights
+            renderSqpStrategicInsights();
+        }
+        
         function scrollToInsight(elementId) {
             const el = document.getElementById(elementId);
             if (el) {
@@ -5888,6 +6054,7 @@
         // Make SQP insights functions global
         window.renderSqpStrategicInsights = renderSqpStrategicInsights;
         window.scrollToInsight = scrollToInsight;
+        window.handleSqpInsightSort = handleSqpInsightSort;
 
         // ==================== IMPRESSION SHARE TRENDS ====================
         
