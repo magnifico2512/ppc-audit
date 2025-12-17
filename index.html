@@ -807,9 +807,6 @@
             overflow-y: auto;
             overflow-x: auto;
         }
-        .sqp-insights-section .insight-table-container {
-            max-height: 500px;
-        }
         .insight-table-container table {
             font-size: 0.7rem;
         }
@@ -832,236 +829,6 @@
             background: #f0fdf4;
             color: #166534;
         }
-        
-        /* SQP Strategic Insights Styles */
-        .sqp-insights-section {
-            margin-top: 2rem;
-            padding-top: 1rem;
-        }
-        .section-divider {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 2px solid #7c3aed;
-        }
-        .section-divider span {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #5b21b6;
-        }
-        .section-divider small {
-            color: #8b5cf6;
-            font-size: 0.8rem;
-        }
-        .sqp-insights-dashboard {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
-        }
-        @media (max-width: 1200px) {
-            .sqp-insights-dashboard {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        @media (max-width: 768px) {
-            .sqp-insights-dashboard {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        .sqp-insight-stat {
-            padding: 1rem;
-            border-radius: 8px;
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .sqp-insight-stat:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-        .sqp-insight-stat-icon {
-            font-size: 1.5rem;
-            margin-bottom: 0.25rem;
-        }
-        .sqp-insight-stat-count {
-            font-size: 1.75rem;
-            font-weight: 700;
-            font-family: 'JetBrains Mono', monospace;
-        }
-        .sqp-insight-stat-label {
-            font-size: 0.7rem;
-            font-weight: 500;
-            margin-top: 0.25rem;
-            opacity: 0.9;
-        }
-        .sqp-insight-stat.scale {
-            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
-            color: white;
-        }
-        .sqp-insight-stat.defend {
-            background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
-            color: white;
-        }
-        .sqp-insight-stat.cut {
-            background: linear-gradient(135deg, #dc2626 0%, #f87171 100%);
-            color: white;
-        }
-        .sqp-insight-stat.quickwin {
-            background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
-            color: white;
-        }
-        .sqp-insight-stat.recovery {
-            background: linear-gradient(135deg, #ea580c 0%, #fb923c 100%);
-            color: white;
-        }
-        .sqp-insight-stat.gem {
-            background: linear-gradient(135deg, #0891b2 0%, #22d3ee 100%);
-            color: white;
-        }
-        .insight-card-scale .insight-header {
-            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
-        }
-        .insight-card-defend .insight-header {
-            background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
-        }
-        .insight-card-cut .insight-header {
-            background: linear-gradient(135deg, #dc2626 0%, #f87171 100%);
-        }
-        .insight-card-quickwin .insight-header {
-            background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
-        }
-        .insight-card-recovery .insight-header {
-            background: linear-gradient(135deg, #ea580c 0%, #fb923c 100%);
-        }
-        .insight-card-gem .insight-header {
-            background: linear-gradient(135deg, #0891b2 0%, #22d3ee 100%);
-        }
-        .insight-description {
-            font-size: 0.75rem;
-            margin-top: 0.25rem;
-            opacity: 0.9;
-            font-weight: normal;
-        }
-        .insight-filters-row {
-            display: flex;
-            gap: 0.75rem;
-            padding: 0.5rem 1rem;
-            background: #f8fafc;
-            flex-wrap: wrap;
-            align-items: center;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        .insight-filters-row label {
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-            font-size: 0.7rem;
-            color: #475569;
-            font-weight: 500;
-        }
-        .insight-filters-row input[type="number"] {
-            width: 50px;
-            padding: 0.2rem 0.3rem;
-            border: 1px solid #cbd5e1;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            font-family: 'JetBrains Mono', monospace;
-            text-align: center;
-        }
-        .insight-filters-row input[type="number"]:focus {
-            outline: none;
-            border-color: #7c3aed;
-            box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.2);
-        }
-        .insight-criteria {
-            display: flex;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: #f8fafc;
-            flex-wrap: wrap;
-        }
-        .insight-criteria span {
-            background: #e2e8f0;
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.65rem;
-            font-family: 'JetBrains Mono', monospace;
-            color: #475569;
-        }
-        .sqp-insight-sortable {
-            cursor: pointer;
-            user-select: none;
-        }
-        .sqp-insight-sortable:hover {
-            background: #e2e8f0;
-        }
-        .sqp-asin-sku-cell {
-            display: flex;
-            flex-direction: column;
-            gap: 1px;
-        }
-        .sqp-asin-sku-cell .sku {
-            font-size: 0.6rem;
-            color: #059669;
-            font-family: 'JetBrains Mono', monospace;
-            max-width: 80px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        .insight-pagination {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-            padding: 0.5rem 1rem;
-            background: #f8fafc;
-            border-top: 1px solid #e2e8f0;
-            font-size: 0.75rem;
-            color: #64748b;
-        }
-        .insight-pagination button {
-            background: #7c3aed;
-            color: white;
-            border: none;
-            padding: 0.35rem 0.75rem;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .insight-pagination button:hover {
-            background: #6d28d9;
-        }
-        .insight-action-badge {
-            display: inline-block;
-            padding: 0.15rem 0.4rem;
-            border-radius: 3px;
-            font-size: 0.6rem;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-        .insight-action-badge.increase {
-            background: #dcfce7;
-            color: #166534;
-        }
-        .insight-action-badge.decrease {
-            background: #fee2e2;
-            color: #991b1b;
-        }
-        .insight-action-badge.review {
-            background: #fef3c7;
-            color: #92400e;
-        }
-        .insight-action-badge.start {
-            background: #ddd6fe;
-            color: #5b21b6;
-        }
-        
         .search-term-text {
             max-width: 180px;
             overflow: hidden;
@@ -1410,40 +1177,23 @@
             top: 0;
             z-index: 2;
             white-space: nowrap;
-            padding: 0.4rem 0.5rem;
+            background: var(--bg-subheader);
         }
         .sqp-table-container td {
             padding: 0.4rem 0.5rem;
             border-bottom: 1px solid var(--border-color);
         }
         .sqp-header-group {
-            background: linear-gradient(135deg, #4c1d95 0%, #6d28d9 100%) !important;
-            color: white !important;
+            background: linear-gradient(135deg, #4c1d95 0%, #6d28d9 100%);
+            color: white;
             text-align: center;
             font-weight: 600;
             padding: 0.5rem;
         }
-        .sqp-table-container th.sqp-header-group {
-            background: linear-gradient(135deg, #4c1d95 0%, #6d28d9 100%) !important;
-        }
         .sqp-header-sp {
-            background: linear-gradient(135deg, #b91c1c 0%, #dc2626 100%) !important;
-            color: #ffffff !important;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
             text-align: center;
-            font-weight: 700;
-            padding: 0.6rem;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-            font-size: 0.85rem;
-        }
-        .sqp-table-container th.sqp-header-sp {
-            background: linear-gradient(135deg, #b91c1c 0%, #dc2626 100%) !important;
-        }
-        .sqp-table-container th.sortable-header {
-            background: var(--bg-subheader);
-            cursor: pointer;
-        }
-        .sqp-table-container th.sortable-header:hover {
-            background: #e5e7eb;
         }
         .sqp-search-term-cell {
             max-width: 200px;
@@ -1535,19 +1285,18 @@
             position: absolute;
             top: 100%;
             left: 0;
+            right: 0;
             background: white;
             border: 1px solid var(--border-color);
             border-radius: 4px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             z-index: 100;
             display: none;
-            max-height: 350px;
-            overflow: hidden;
-            min-width: 280px;
+            max-height: 300px;
+            overflow-y: auto;
         }
         .sqp-week-filter-wrapper.open .sqp-week-filter-dropdown {
-            display: flex;
-            flex-direction: column;
+            display: block;
         }
         .sqp-week-filter-actions {
             display: flex;
@@ -1555,7 +1304,6 @@
             padding: 0.5rem;
             border-bottom: 1px solid var(--border-color);
             background: #f8fafc;
-            flex-shrink: 0;
         }
         .sqp-week-filter-actions button {
             flex: 1;
@@ -1574,176 +1322,225 @@
         }
         .sqp-week-filter-options {
             padding: 0.25rem 0;
-            overflow-y: auto;
-            max-height: 280px;
-        }
-        
-        /* SQP ASIN Filter Styles */
-        .sqp-asin-filter-wrapper {
-            position: relative;
-            min-width: 200px;
-        }
-        .sqp-asin-filter-trigger {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.4rem 0.6rem;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            font-size: 0.75rem;
-            background: white;
-            cursor: pointer;
-            user-select: none;
-        }
-        .sqp-asin-filter-trigger:hover {
-            border-color: #7c3aed;
-        }
-        .sqp-asin-filter-arrow {
-            font-size: 0.6rem;
-            color: #666;
-            transition: transform 0.2s;
-        }
-        .sqp-asin-filter-wrapper.open .sqp-asin-filter-arrow {
-            transform: rotate(180deg);
-        }
-        .sqp-asin-filter-dropdown {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: white;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            z-index: 100;
-            display: none;
-            max-height: 350px;
-            overflow: hidden;
-            min-width: 280px;
-        }
-        .sqp-asin-filter-wrapper.open .sqp-asin-filter-dropdown {
-            display: flex;
-            flex-direction: column;
-        }
-        .sqp-asin-filter-search {
-            margin: 0.5rem;
-            padding: 0.5rem 0.75rem;
-            border: 2px solid #7c3aed;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            outline: none;
-        }
-        .sqp-asin-filter-search:focus {
-            border-color: #6d28d9;
-        }
-        .sqp-asin-filter-actions {
-            display: flex;
-            gap: 0.5rem;
-            padding: 0.5rem;
-            border-bottom: 1px solid var(--border-color);
-            background: #f8fafc;
-        }
-        .sqp-asin-filter-actions button {
-            flex: 1;
-            padding: 0.3rem 0.5rem;
-            font-size: 0.65rem;
-            border: 1px solid var(--border-color);
-            border-radius: 3px;
-            background: white;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .sqp-asin-filter-actions button:hover {
-            background: #7c3aed;
-            color: white;
-            border-color: #7c3aed;
-        }
-        .sqp-asin-filter-options {
-            overflow-y: auto;
-            max-height: 250px;
-            padding: 0.25rem 0;
-        }
-        .sqp-asin-option {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.4rem 0.75rem;
-            cursor: pointer;
-            transition: background 0.15s;
-            font-size: 0.75rem;
-            font-family: 'JetBrains Mono', monospace;
-        }
-        .sqp-asin-option:hover {
-            background: #f3f4f6;
-        }
-        .sqp-asin-option.hidden {
-            display: none;
-        }
-        .sqp-asin-option input[type="checkbox"] {
-            width: 14px;
-            height: 14px;
-            accent-color: #7c3aed;
-        }
-        .sqp-asin-link {
-            color: #7c3aed;
-            text-decoration: none;
-            cursor: pointer;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-        }
-        .sqp-asin-link:hover {
-            text-decoration: underline;
-            color: #6d28d9;
-        }
-        .sqp-sku-cell {
-            font-size: 0.65rem;
-            color: #059669;
-            font-family: 'JetBrains Mono', monospace;
-            max-width: 100px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
         }
         .sqp-week-option {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            padding: 0.6rem 0.75rem;
+            gap: 0.5rem;
+            padding: 0.5rem 0.75rem;
             cursor: pointer;
             transition: background 0.15s;
-            font-size: 0.8rem;
-            border-bottom: 1px solid #f1f5f9;
-        }
-        .sqp-week-option:last-child {
-            border-bottom: none;
+            font-size: 0.75rem;
         }
         .sqp-week-option:hover {
             background: #f3f4f6;
         }
         .sqp-week-option input[type="checkbox"] {
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
             accent-color: #7c3aed;
-            flex-shrink: 0;
         }
         .sqp-week-option-label {
             display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 0.75rem;
-            flex: 1;
+            flex-direction: column;
+            gap: 0.1rem;
         }
         .sqp-week-number {
-            font-weight: 700;
-            color: #7c3aed;
-            font-size: 0.85rem;
-            min-width: 40px;
+            font-weight: 600;
+            color: #1e293b;
         }
         .sqp-week-dates {
-            font-size: 0.75rem;
-            color: #374151;
-            font-weight: 500;
+            font-size: 0.65rem;
+            color: #64748b;
         }
+        
+        /* SQP Strategic Insights Styles */
+        .sqp-insights-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        .sqp-insight-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .sqp-insight-card.hidden-gems {
+            border: 1px solid #10b981;
+        }
+        .sqp-insight-card.hidden-gems .sqp-insight-header {
+            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+        }
+        .sqp-insight-card.scale-opps {
+            border: 1px solid #f59e0b;
+        }
+        .sqp-insight-card.scale-opps .sqp-insight-header {
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+        }
+        .sqp-insight-card.defend-pos {
+            border: 1px solid #ef4444;
+        }
+        .sqp-insight-card.defend-pos .sqp-insight-header {
+            background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+        }
+        .sqp-insight-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1rem;
+            color: white;
+            cursor: pointer;
+            user-select: none;
+        }
+        .sqp-insight-title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .sqp-insight-icon {
+            font-size: 1.1rem;
+        }
+        .sqp-insight-badge {
+            background: rgba(255,255,255,0.3);
+            padding: 0.15rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+        .sqp-insight-desc {
+            flex: 1;
+            text-align: center;
+            font-size: 0.75rem;
+            opacity: 0.9;
+            margin: 0 1rem;
+        }
+        .sqp-insight-toggle {
+            font-size: 0.7rem;
+            transition: transform 0.2s;
+        }
+        .sqp-insight-card.open .sqp-insight-toggle {
+            transform: rotate(180deg);
+        }
+        .sqp-insight-content {
+            background: white;
+            padding: 0.75rem;
+        }
+        .sqp-insight-filters {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            padding: 0.5rem;
+            background: #f8fafc;
+            border-radius: 6px;
+            margin-bottom: 0.75rem;
+            font-size: 0.75rem;
+        }
+        .sqp-insight-filters label {
+            font-weight: 500;
+            color: #475569;
+        }
+        .sqp-insight-filters input {
+            padding: 0.25rem 0.4rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+        .sqp-insight-filters span {
+            color: #64748b;
+        }
+        .sqp-insight-apply {
+            padding: 0.35rem 0.75rem;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-left: auto;
+        }
+        .sqp-insight-apply:hover {
+            background: #2563eb;
+        }
+        .sqp-insight-summary {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 0.5rem 0;
+            margin-bottom: 0.5rem;
+            font-size: 0.75rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .sqp-insight-summary-item {
+            display: flex;
+            gap: 0.3rem;
+        }
+        .sqp-insight-summary-label {
+            color: #64748b;
+        }
+        .sqp-insight-summary-value {
+            font-weight: 600;
+            color: #1e293b;
+        }
+        .sqp-insight-table {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .sqp-insight-table table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.7rem;
+        }
+        .sqp-insight-table th {
+            position: sticky;
+            top: 0;
+            background: #f1f5f9;
+            padding: 0.4rem 0.5rem;
+            text-align: left;
+            font-weight: 600;
+            color: #475569;
+            border-bottom: 1px solid #e2e8f0;
+            white-space: nowrap;
+        }
+        .sqp-insight-table td {
+            padding: 0.4rem 0.5rem;
+            border-bottom: 1px solid #f1f5f9;
+            white-space: nowrap;
+        }
+        .sqp-insight-table tr:hover {
+            background: #f8fafc;
+        }
+        .sqp-insight-action {
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .sqp-insight-action.dominate {
+            background: #dcfce7;
+            color: #166534;
+        }
+        .sqp-insight-action.scale {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        .sqp-insight-action.defend {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        .sqp-trend-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+        }
+        .sqp-trend-indicator.up { color: #10b981; }
+        .sqp-trend-indicator.down { color: #ef4444; }
+        .sqp-trend-indicator.stable { color: #6b7280; }
         
         .chart-modal-overlay {
             display: none;
@@ -1850,29 +1647,6 @@
         .chart-modal-stat-trend.up { color: #10b981; }
         .chart-modal-stat-trend.down { color: #ef4444; }
         .chart-modal-stat-trend.stable { color: #6b7280; }
-        .sqp-rank-chart-cell {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            padding: 2px 4px;
-            border-radius: 4px;
-            transition: background 0.15s;
-        }
-        .sqp-rank-chart-cell:hover {
-            background: rgba(8, 145, 178, 0.1);
-        }
-        .sqp-imp-share-cell {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            padding: 2px 4px;
-            border-radius: 4px;
-            transition: background 0.15s;
-            cursor: pointer;
-        }
-        .sqp-imp-share-cell:hover {
-            background: rgba(139, 92, 246, 0.1);
-        }
         .chart-canvas-container {
             position: relative;
             height: 300px;
@@ -2279,117 +2053,6 @@
                         <div class="insight-table-container" id="campHighAcosTable"></div>
                     </div>
                 </div>
-
-                <!-- SQP Strategic Insights Section -->
-                <div class="sqp-insights-section" id="sqpInsightsSection" style="display:none;">
-                    <div class="section-divider">
-                        <span>🎯 SQP Strategic Insights</span>
-                        <small>Powered by Search Query Performance + SP Data + Impression Rank</small>
-                    </div>
-                    
-                    <div class="sqp-insights-dashboard" id="sqpInsightsDashboard"></div>
-                    
-                    <div class="insights-grid">
-                        <!-- Scale Opportunities -->
-                        <div class="insight-card insight-card-scale">
-                            <div class="insight-header">
-                                <h3>🚀 Scale Opportunities</h3>
-                                <p class="insight-description">You outperform the market but don't have enough traffic. Increase bids aggressively!</p>
-                            </div>
-                            <div class="insight-filters-row">
-                                <label>Conv Δ &gt;<input type="number" id="sqpScaleConvDelta" value="3" step="0.5" min="0">%</label>
-                                <label>Imp Share &lt;<input type="number" id="sqpScaleImpShare" value="15" step="1" min="0">%</label>
-                                <label>ACOS &lt;<input type="number" id="sqpScaleAcos" value="40" step="5" min="0">%</label>
-                                <label>Min Purchases ≥<input type="number" id="sqpScaleMinPurch" value="5" step="1" min="1"></label>
-                                <button class="insight-apply-btn" onclick="renderSqpStrategicInsights()">Apply</button>
-                            </div>
-                            <div class="insight-summary" id="sqpScaleSummary"></div>
-                            <div class="insight-table-container" id="sqpScaleTable"></div>
-                        </div>
-
-                        <!-- Defend Position -->
-                        <div class="insight-card insight-card-defend">
-                            <div class="insight-header">
-                                <h3>🛡️ Defend Position</h3>
-                                <p class="insight-description">Profitable keywords with declining rank. Increase bids before you lose to competitors!</p>
-                            </div>
-                            <div class="insight-filters-row">
-                                <label>ACOS &lt;<input type="number" id="sqpDefendAcos" value="35" step="5" min="0">%</label>
-                                <label>Min Spend &gt;<input type="number" id="sqpDefendMinSpend" value="5" step="1" min="0">€</label>
-                                <label>Min Purchases ≥<input type="number" id="sqpDefendMinPurch" value="3" step="1" min="1"></label>
-                                <button class="insight-apply-btn" onclick="renderSqpStrategicInsights()">Apply</button>
-                            </div>
-                            <div class="insight-summary" id="sqpDefendSummary"></div>
-                            <div class="insight-table-container" id="sqpDefendTable"></div>
-                        </div>
-
-                        <!-- Cut or Optimize -->
-                        <div class="insight-card insight-card-cut">
-                            <div class="insight-header">
-                                <h3>✂️ Cut or Optimize</h3>
-                                <p class="insight-description">You underperform the market and lose money. Reduce bids, negate, or fix listing!</p>
-                            </div>
-                            <div class="insight-filters-row">
-                                <label>Conv Δ &lt;<input type="number" id="sqpCutConvDelta" value="-2" step="0.5" max="0">%</label>
-                                <label>ACOS &gt;<input type="number" id="sqpCutAcos" value="50" step="5" min="0">%</label>
-                                <label>Spend &gt;<input type="number" id="sqpCutMinSpend" value="20" step="5" min="0">€</label>
-                                <label>Min Mkt Purch ≥<input type="number" id="sqpCutMinMktPurch" value="10" step="1" min="1"></label>
-                                <button class="insight-apply-btn" onclick="renderSqpStrategicInsights()">Apply</button>
-                            </div>
-                            <div class="insight-summary" id="sqpCutSummary"></div>
-                            <div class="insight-table-container" id="sqpCutTable"></div>
-                        </div>
-
-                        <!-- Quick Wins -->
-                        <div class="insight-card insight-card-quickwin">
-                            <div class="insight-header">
-                                <h3>🎯 Quick Wins</h3>
-                                <p class="insight-description">High organic conversion but low ad investment. Start or increase advertising!</p>
-                            </div>
-                            <div class="insight-filters-row">
-                                <label>ASIN Conv &gt;<input type="number" id="sqpQuickWinConv" value="15" step="1" min="0">%</label>
-                                <label>Spend &lt;<input type="number" id="sqpQuickWinSpend" value="10" step="5" min="0">€</label>
-                                <label>Query Vol &gt;<input type="number" id="sqpQuickWinVol" value="1000" step="100" min="0"></label>
-                                <label>Min Purchases ≥<input type="number" id="sqpQuickWinMinPurch" value="5" step="1" min="1"></label>
-                                <button class="insight-apply-btn" onclick="renderSqpStrategicInsights()">Apply</button>
-                            </div>
-                            <div class="insight-summary" id="sqpQuickWinSummary"></div>
-                            <div class="insight-table-container" id="sqpQuickWinTable"></div>
-                        </div>
-
-                        <!-- Rank Recovery -->
-                        <div class="insight-card insight-card-recovery">
-                            <div class="insight-header">
-                                <h3>📉 Rank Recovery Needed</h3>
-                                <p class="insight-description">You've lost significant ranking positions. Push bids to recover visibility!</p>
-                            </div>
-                            <div class="insight-filters-row">
-                                <label>Rank Loss &gt;<input type="number" id="sqpRecoveryRankDiff" value="5" step="1" min="1"></label>
-                                <label>Query Vol &gt;<input type="number" id="sqpRecoveryVol" value="500" step="100" min="0"></label>
-                                <label>Best Rank ≤<input type="number" id="sqpRecoveryBestRank" value="10" step="1" min="1"></label>
-                                <button class="insight-apply-btn" onclick="renderSqpStrategicInsights()">Apply</button>
-                            </div>
-                            <div class="insight-summary" id="sqpRecoverySummary"></div>
-                            <div class="insight-table-container" id="sqpRecoveryTable"></div>
-                        </div>
-
-                        <!-- Hidden Gems -->
-                        <div class="insight-card insight-card-gem">
-                            <div class="insight-header">
-                                <h3>💎 Hidden Gems</h3>
-                                <p class="insight-description">Low competition keywords where you convert well. Dominate these niches!</p>
-                            </div>
-                            <div class="insight-filters-row">
-                                <label>Market CTR &lt;<input type="number" id="sqpGemMktCtr" value="2" step="0.5" min="0">%</label>
-                                <label>Query Vol &gt;<input type="number" id="sqpGemVol" value="500" step="100" min="0"></label>
-                                <label>Min Purchases ≥<input type="number" id="sqpGemMinPurch" value="5" step="1" min="1"></label>
-                                <button class="insight-apply-btn" onclick="renderSqpStrategicInsights()">Apply</button>
-                            </div>
-                            <div class="insight-summary" id="sqpGemSummary"></div>
-                            <div class="insight-table-container" id="sqpGemTable"></div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <div class="tab-content" id="tab-impression-share">
@@ -2493,20 +2156,9 @@
                         </div>
                         <div class="filter-group">
                             <label>ASIN</label>
-                            <div class="sqp-asin-filter-wrapper" id="sqpAsinFilterWrapper">
-                                <div class="sqp-asin-filter-trigger" id="sqpAsinFilterTrigger">
-                                    <span id="sqpAsinFilterLabel">All ASINs</span>
-                                    <span class="sqp-asin-filter-arrow">▼</span>
-                                </div>
-                                <div class="sqp-asin-filter-dropdown" id="sqpAsinFilterDropdown">
-                                    <input type="text" class="sqp-asin-filter-search" id="sqpAsinFilterSearch" placeholder="Search ASINs...">
-                                    <div class="sqp-asin-filter-actions">
-                                        <button onclick="sqpSelectAllAsins()">Select All</button>
-                                        <button onclick="sqpDeselectAllAsins()">Deselect All</button>
-                                    </div>
-                                    <div class="sqp-asin-filter-options" id="sqpAsinFilterOptions"></div>
-                                </div>
-                            </div>
+                            <select id="sqpAsinFilter">
+                                <option value="all">All ASINs</option>
+                            </select>
                         </div>
                         <div class="filter-group">
                             <label>Min Query Volume</label>
@@ -2525,6 +2177,95 @@
                             </select>
                         </div>
                         <button class="filter-apply-btn" onclick="renderSqpTable()">Apply Filters</button>
+                    </div>
+
+                    <!-- Strategic Insights Sections -->
+                    <div class="sqp-insights-container" id="sqpInsightsContainer">
+                        <!-- Hidden Gems -->
+                        <div class="sqp-insight-card hidden-gems">
+                            <div class="sqp-insight-header" onclick="toggleSqpInsight('hiddenGems')">
+                                <div class="sqp-insight-title">
+                                    <span class="sqp-insight-icon">💎</span>
+                                    <span>Hidden Gems</span>
+                                    <span class="sqp-insight-badge" id="hiddenGemsCount">0</span>
+                                </div>
+                                <div class="sqp-insight-desc">Low competition keywords where you convert well. Dominate these niches!</div>
+                                <span class="sqp-insight-toggle" id="hiddenGemsToggle">▼</span>
+                            </div>
+                            <div class="sqp-insight-content" id="hiddenGemsContent" style="display:none;">
+                                <div class="sqp-insight-filters">
+                                    <label>Market CTR <</label>
+                                    <input type="number" id="hgMarketCtr" value="2" step="0.5" style="width:60px">
+                                    <span>%</span>
+                                    <label>Query Vol ></label>
+                                    <input type="number" id="hgQueryVol" value="500" step="100" style="width:70px">
+                                    <label>Min Purchases ≥</label>
+                                    <input type="number" id="hgMinPurchases" value="5" step="1" style="width:50px">
+                                    <button class="sqp-insight-apply" onclick="renderHiddenGems()">Apply</button>
+                                </div>
+                                <div class="sqp-insight-summary" id="hiddenGemsSummary"></div>
+                                <div class="sqp-insight-table" id="hiddenGemsTable"></div>
+                            </div>
+                        </div>
+
+                        <!-- Scale Opportunities -->
+                        <div class="sqp-insight-card scale-opps">
+                            <div class="sqp-insight-header" onclick="toggleSqpInsight('scaleOpps')">
+                                <div class="sqp-insight-title">
+                                    <span class="sqp-insight-icon">🚀</span>
+                                    <span>Scale Opportunities</span>
+                                    <span class="sqp-insight-badge" id="scaleOppsCount">0</span>
+                                </div>
+                                <div class="sqp-insight-desc">You outperform the market but don't have enough traffic. Increase bids aggressively!</div>
+                                <span class="sqp-insight-toggle" id="scaleOppsToggle">▼</span>
+                            </div>
+                            <div class="sqp-insight-content" id="scaleOppsContent" style="display:none;">
+                                <div class="sqp-insight-filters">
+                                    <label>Conv Δ ></label>
+                                    <input type="number" id="soConvDelta" value="3" step="1" style="width:50px">
+                                    <span>%</span>
+                                    <label>Imp Share <</label>
+                                    <input type="number" id="soImpShare" value="15" step="5" style="width:50px">
+                                    <span>%</span>
+                                    <label>ACOS <</label>
+                                    <input type="number" id="soAcos" value="40" step="5" style="width:50px">
+                                    <span>%</span>
+                                    <label>Min Purchases ≥</label>
+                                    <input type="number" id="soMinPurchases" value="5" step="1" style="width:50px">
+                                    <button class="sqp-insight-apply" onclick="renderScaleOpps()">Apply</button>
+                                </div>
+                                <div class="sqp-insight-summary" id="scaleOppsSummary"></div>
+                                <div class="sqp-insight-table" id="scaleOppsTable"></div>
+                            </div>
+                        </div>
+
+                        <!-- Defend Position -->
+                        <div class="sqp-insight-card defend-pos">
+                            <div class="sqp-insight-header" onclick="toggleSqpInsight('defendPos')">
+                                <div class="sqp-insight-title">
+                                    <span class="sqp-insight-icon">🛡️</span>
+                                    <span>Defend Position</span>
+                                    <span class="sqp-insight-badge" id="defendPosCount">0</span>
+                                </div>
+                                <div class="sqp-insight-desc">Profitable keywords with declining rank. Increase bids before you lose to competitors!</div>
+                                <span class="sqp-insight-toggle" id="defendPosToggle">▼</span>
+                            </div>
+                            <div class="sqp-insight-content" id="defendPosContent" style="display:none;">
+                                <div class="sqp-insight-filters">
+                                    <label>ACOS <</label>
+                                    <input type="number" id="dpAcos" value="35" step="5" style="width:50px">
+                                    <span>%</span>
+                                    <label>Min Spend ></label>
+                                    <input type="number" id="dpMinSpend" value="5" step="1" style="width:50px">
+                                    <span>€</span>
+                                    <label>Min Purchases ≥</label>
+                                    <input type="number" id="dpMinPurchases" value="3" step="1" style="width:50px">
+                                    <button class="sqp-insight-apply" onclick="renderDefendPos()">Apply</button>
+                                </div>
+                                <div class="sqp-insight-summary" id="defendPosSummary"></div>
+                                <div class="sqp-insight-table" id="defendPosTable"></div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="sqp-table-wrapper">
@@ -2558,7 +2299,6 @@
 
     <script>
         let parsedData = { sp: [], sb: [], sd: [], searchTerms: [], placements: [], impressionShare: [] };
-        let spRankMapping = new Map(); // SP rank mapping for SQP integration
 
         const dropZone = document.getElementById('dropZone');
         const fileInput = document.getElementById('fileInput');
@@ -5744,412 +5484,6 @@
         window.renderKeywordsPerforming = renderKeywordsPerforming;
         window.renderCampaignsHighAcos = renderCampaignsHighAcos;
 
-        // ==================== SQP STRATEGIC INSIGHTS ====================
-        
-        // Sort state for SQP insight tables
-        let sqpInsightSortState = {
-            sqpScale: { column: 'asinPurchases', direction: 'desc' },
-            sqpDefend: { column: 'asinPurchases', direction: 'desc' },
-            sqpCut: { column: 'spend', direction: 'desc' },
-            sqpQuickWin: { column: 'asinPurchases', direction: 'desc' },
-            sqpRecovery: { column: 'queryVolume', direction: 'desc' },
-            sqpGem: { column: 'asinPurchases', direction: 'desc' }
-        };
-        
-        function renderSqpStrategicInsights() {
-            const section = document.getElementById('sqpInsightsSection');
-            if (!sqpCombinedData || sqpCombinedData.length === 0) {
-                section.style.display = 'none';
-                return;
-            }
-            
-            section.style.display = 'block';
-            
-            // Get end date for rank calculations
-            const endDate = currentSqpEndDate || new Date();
-            
-            // Read filter values from inputs (with defaults)
-            const scaleConvDelta = parseFloat(document.getElementById('sqpScaleConvDelta')?.value) || 3;
-            const scaleImpShare = parseFloat(document.getElementById('sqpScaleImpShare')?.value) || 15;
-            const scaleAcos = parseFloat(document.getElementById('sqpScaleAcos')?.value) || 40;
-            const scaleMinPurch = parseFloat(document.getElementById('sqpScaleMinPurch')?.value) || 5;
-            
-            const defendAcos = parseFloat(document.getElementById('sqpDefendAcos')?.value) || 35;
-            const defendMinSpend = parseFloat(document.getElementById('sqpDefendMinSpend')?.value) || 5;
-            const defendMinPurch = parseFloat(document.getElementById('sqpDefendMinPurch')?.value) || 3;
-            
-            const cutConvDelta = parseFloat(document.getElementById('sqpCutConvDelta')?.value) || -2;
-            const cutAcos = parseFloat(document.getElementById('sqpCutAcos')?.value) || 50;
-            const cutMinSpend = parseFloat(document.getElementById('sqpCutMinSpend')?.value) || 20;
-            const cutMinMktPurch = parseFloat(document.getElementById('sqpCutMinMktPurch')?.value) || 10;
-            
-            const quickWinConv = parseFloat(document.getElementById('sqpQuickWinConv')?.value) || 15;
-            const quickWinSpend = parseFloat(document.getElementById('sqpQuickWinSpend')?.value) || 10;
-            const quickWinVol = parseFloat(document.getElementById('sqpQuickWinVol')?.value) || 1000;
-            const quickWinMinPurch = parseFloat(document.getElementById('sqpQuickWinMinPurch')?.value) || 5;
-            
-            const recoveryRankDiff = parseFloat(document.getElementById('sqpRecoveryRankDiff')?.value) || 5;
-            const recoveryVol = parseFloat(document.getElementById('sqpRecoveryVol')?.value) || 500;
-            const recoveryBestRank = parseFloat(document.getElementById('sqpRecoveryBestRank')?.value) || 10;
-            
-            const gemMktCtr = parseFloat(document.getElementById('sqpGemMktCtr')?.value) || 2;
-            const gemVol = parseFloat(document.getElementById('sqpGemVol')?.value) || 500;
-            const gemMinPurch = parseFloat(document.getElementById('sqpGemMinPurch')?.value) || 5;
-            
-            // Categorize keywords
-            const scaleOpps = [];
-            const defendPositions = [];
-            const cutOptimize = [];
-            const quickWins = [];
-            const rankRecovery = [];
-            const hiddenGems = [];
-            
-            sqpCombinedData.forEach(row => {
-                const spRankStats = getSpRankStats(row.searchTerm, endDate);
-                const rankTrend = spRankStats.trend || 'stable';
-                const rankDiff = (spRankStats.avg30d !== null && spRankStats.bestRank !== null) 
-                    ? spRankStats.avg30d - spRankStats.bestRank : 0;
-                
-                // Get purchase counts
-                const asinPurchases = row.purchasesAsinCount || 0;
-                const marketPurchases = row.purchasesTotalCount || 0;
-                const purchaseShare = marketPurchases > 0 ? (asinPurchases / marketPurchases * 100) : 0;
-                
-                // 🚀 Scale Opportunities
-                if (row.convDelta !== null && row.convDelta > scaleConvDelta && 
-                    row.impressionShareSqp < scaleImpShare && 
-                    row.acos < (scaleAcos / 100) && row.acos !== Infinity && row.spend > 0 &&
-                    asinPurchases >= scaleMinPurch) {
-                    scaleOpps.push({ ...row, spRankStats, asinPurchases, marketPurchases, purchaseShare, action: 'Increase Bids' });
-                }
-                
-                // 🛡️ Defend Position
-                if (rankTrend === 'declining' && 
-                    row.acos < (defendAcos / 100) && row.acos !== Infinity && row.spend > defendMinSpend &&
-                    asinPurchases >= defendMinPurch) {
-                    defendPositions.push({ ...row, spRankStats, asinPurchases, marketPurchases, purchaseShare, action: 'Increase Bids' });
-                }
-                
-                // ✂️ Cut or Optimize
-                if (row.convDelta !== null && row.convDelta < cutConvDelta && 
-                    row.acos > (cutAcos / 100) && row.spend > cutMinSpend &&
-                    marketPurchases >= cutMinMktPurch) {
-                    cutOptimize.push({ ...row, spRankStats, asinPurchases, marketPurchases, purchaseShare, action: 'Reduce/Negate' });
-                }
-                
-                // 🎯 Quick Wins
-                if (row.asinConvRate > quickWinConv && row.spend < quickWinSpend && row.queryVolume > quickWinVol &&
-                    asinPurchases >= quickWinMinPurch) {
-                    quickWins.push({ ...row, spRankStats, asinPurchases, marketPurchases, purchaseShare, action: 'Start Ads' });
-                }
-                
-                // 📉 Rank Recovery
-                if (spRankStats.bestRank !== null && spRankStats.bestRank <= recoveryBestRank && 
-                    rankDiff > recoveryRankDiff && row.queryVolume > recoveryVol) {
-                    rankRecovery.push({ ...row, spRankStats, asinPurchases, marketPurchases, purchaseShare, rankDiff, action: 'Push Bids' });
-                }
-                
-                // 💎 Hidden Gems
-                if (row.marketCtr < gemMktCtr && row.convDelta !== null && row.convDelta > 0 && 
-                    row.queryVolume > gemVol &&
-                    asinPurchases >= gemMinPurch) {
-                    hiddenGems.push({ ...row, spRankStats, asinPurchases, marketPurchases, purchaseShare, action: 'Dominate' });
-                }
-            });
-            
-            // Render dashboard
-            const dashboardEl = document.getElementById('sqpInsightsDashboard');
-            dashboardEl.innerHTML = `
-                <div class="sqp-insight-stat scale" onclick="scrollToInsight('sqpScaleTable')">
-                    <div class="sqp-insight-stat-icon">🚀</div>
-                    <div class="sqp-insight-stat-count">${scaleOpps.length}</div>
-                    <div class="sqp-insight-stat-label">Scale Opportunities</div>
-                </div>
-                <div class="sqp-insight-stat defend" onclick="scrollToInsight('sqpDefendTable')">
-                    <div class="sqp-insight-stat-icon">🛡️</div>
-                    <div class="sqp-insight-stat-count">${defendPositions.length}</div>
-                    <div class="sqp-insight-stat-label">Defend Position</div>
-                </div>
-                <div class="sqp-insight-stat cut" onclick="scrollToInsight('sqpCutTable')">
-                    <div class="sqp-insight-stat-icon">✂️</div>
-                    <div class="sqp-insight-stat-count">${cutOptimize.length}</div>
-                    <div class="sqp-insight-stat-label">Cut / Optimize</div>
-                </div>
-                <div class="sqp-insight-stat quickwin" onclick="scrollToInsight('sqpQuickWinTable')">
-                    <div class="sqp-insight-stat-icon">🎯</div>
-                    <div class="sqp-insight-stat-count">${quickWins.length}</div>
-                    <div class="sqp-insight-stat-label">Quick Wins</div>
-                </div>
-                <div class="sqp-insight-stat recovery" onclick="scrollToInsight('sqpRecoveryTable')">
-                    <div class="sqp-insight-stat-icon">📉</div>
-                    <div class="sqp-insight-stat-count">${rankRecovery.length}</div>
-                    <div class="sqp-insight-stat-label">Rank Recovery</div>
-                </div>
-                <div class="sqp-insight-stat gem" onclick="scrollToInsight('sqpGemTable')">
-                    <div class="sqp-insight-stat-icon">💎</div>
-                    <div class="sqp-insight-stat-count">${hiddenGems.length}</div>
-                    <div class="sqp-insight-stat-label">Hidden Gems</div>
-                </div>
-            `;
-            
-            // Render individual tables
-            renderSqpInsightTable('sqpScale', scaleOpps, 'scale');
-            renderSqpInsightTable('sqpDefend', defendPositions, 'defend');
-            renderSqpInsightTable('sqpCut', cutOptimize, 'cut');
-            renderSqpInsightTable('sqpQuickWin', quickWins, 'quickwin');
-            renderSqpInsightTable('sqpRecovery', rankRecovery, 'recovery');
-            renderSqpInsightTable('sqpGem', hiddenGems, 'gem');
-        }
-        
-        // Track how many rows to show per table
-        let sqpInsightShowLimit = {
-            sqpScale: 50,
-            sqpDefend: 50,
-            sqpCut: 50,
-            sqpQuickWin: 50,
-            sqpRecovery: 50,
-            sqpGem: 50
-        };
-        
-        function renderSqpInsightTable(prefix, data, type) {
-            const summaryEl = document.getElementById(prefix + 'Summary');
-            const tableEl = document.getElementById(prefix + 'Table');
-            
-            // Get sort state for this table
-            const sortState = sqpInsightSortState[prefix] || { column: 'asinPurchases', direction: 'desc' };
-            const showLimit = sqpInsightShowLimit[prefix] || 50;
-            
-            // Sort data based on current sort state
-            const sortedData = [...data].sort((a, b) => {
-                let aVal, bVal;
-                switch (sortState.column) {
-                    case 'searchTerm':
-                        aVal = a.searchTerm.toLowerCase();
-                        bVal = b.searchTerm.toLowerCase();
-                        break;
-                    case 'asin':
-                        aVal = a.asin;
-                        bVal = b.asin;
-                        break;
-                    case 'asinPurchases':
-                        aVal = a.asinPurchases || 0;
-                        bVal = b.asinPurchases || 0;
-                        break;
-                    case 'marketPurchases':
-                        aVal = a.marketPurchases || 0;
-                        bVal = b.marketPurchases || 0;
-                        break;
-                    case 'purchaseShare':
-                        aVal = a.purchaseShare || 0;
-                        bVal = b.purchaseShare || 0;
-                        break;
-                    case 'convDelta':
-                        aVal = a.convDelta !== null ? a.convDelta : -9999;
-                        bVal = b.convDelta !== null ? b.convDelta : -9999;
-                        break;
-                    case 'impressionShare':
-                        aVal = a.impressionShareSqp || 0;
-                        bVal = b.impressionShareSqp || 0;
-                        break;
-                    case 'acos':
-                        aVal = a.acos === Infinity ? 9999 : (a.acos || 0);
-                        bVal = b.acos === Infinity ? 9999 : (b.acos || 0);
-                        break;
-                    case 'spend':
-                        aVal = a.spend || 0;
-                        bVal = b.spend || 0;
-                        break;
-                    case 'queryVolume':
-                        aVal = a.queryVolume || 0;
-                        bVal = b.queryVolume || 0;
-                        break;
-                    case 'bestRank':
-                        aVal = a.spRankStats?.bestRank ?? 9999;
-                        bVal = b.spRankStats?.bestRank ?? 9999;
-                        break;
-                    case 'avg30dRank':
-                        aVal = a.spRankStats?.avg30d ?? 9999;
-                        bVal = b.spRankStats?.avg30d ?? 9999;
-                        break;
-                    default:
-                        aVal = a.asinPurchases || 0;
-                        bVal = b.asinPurchases || 0;
-                }
-                
-                if (typeof aVal === 'string') {
-                    return sortState.direction === 'asc' ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
-                }
-                return sortState.direction === 'asc' ? aVal - bVal : bVal - aVal;
-            });
-            
-            // Calculate totals
-            const totalSpend = data.reduce((s, r) => s + r.spend, 0);
-            const totalSales = data.reduce((s, r) => s + r.sales, 0);
-            const totalVolume = data.reduce((s, r) => s + r.queryVolume, 0);
-            const totalAsinPurchases = data.reduce((s, r) => s + (r.asinPurchases || 0), 0);
-            const totalMarketPurchases = data.reduce((s, r) => s + (r.marketPurchases || 0), 0);
-            
-            let summaryClass = '';
-            if (type === 'scale' || type === 'quickwin' || type === 'gem') summaryClass = 'good';
-            if (type === 'cut') summaryClass = 'bad';
-            
-            summaryEl.className = 'insight-summary ' + summaryClass;
-            summaryEl.innerHTML = `
-                <div class="insight-summary-item"><span class="insight-summary-label">Keywords:</span><span class="insight-summary-value">${formatNumber(data.length)}</span></div>
-                <div class="insight-summary-item"><span class="insight-summary-label">Query Volume:</span><span class="insight-summary-value">${formatNumber(Math.round(totalVolume))}</span></div>
-                <div class="insight-summary-item"><span class="insight-summary-label">Your Purchases:</span><span class="insight-summary-value">${formatNumber(Math.round(totalAsinPurchases))}</span></div>
-                <div class="insight-summary-item"><span class="insight-summary-label">Market Purchases:</span><span class="insight-summary-value">${formatNumber(Math.round(totalMarketPurchases))}</span></div>
-                <div class="insight-summary-item"><span class="insight-summary-label">Spend:</span><span class="insight-summary-value">${formatCurrencyDecimal(totalSpend)}</span></div>
-                <div class="insight-summary-item"><span class="insight-summary-label">Sales:</span><span class="insight-summary-value">${formatCurrencyDecimal(totalSales)}</span></div>
-            `;
-            
-            if (data.length === 0) {
-                let emptyMsg = 'No keywords found matching criteria';
-                if (type === 'scale') emptyMsg = 'No scale opportunities with sufficient purchase data';
-                if (type === 'cut') emptyMsg = '✅ Great! No bleeding keywords found';
-                if (type === 'quickwin') emptyMsg = 'No quick wins with sufficient purchase data';
-                tableEl.innerHTML = `<div class="insight-empty ${type === 'cut' ? 'good' : ''}">${emptyMsg}</div>`;
-                return;
-            }
-            
-            const marketplace = document.getElementById('marketplace')?.value || 'de';
-            
-            // Helper for sort icon
-            const getSortIconForCol = (col) => {
-                if (sortState.column !== col) return '<span class="sort-icon">⇅</span>';
-                return sortState.direction === 'desc' 
-                    ? '<span class="sort-icon active">▼</span>' 
-                    : '<span class="sort-icon active">▲</span>';
-            };
-            
-            const displayData = sortedData.slice(0, showLimit);
-            const hasMore = sortedData.length > showLimit;
-            const remaining = sortedData.length - showLimit;
-            
-            // Show rank columns for defend and recovery types
-            const showRankCols = (type === 'defend' || type === 'recovery');
-            
-            tableEl.innerHTML = `
-                <table class="sqp-insight-table" id="${prefix}TableInner">
-                    <thead>
-                        <tr>
-                            <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'searchTerm')" style="min-width:150px;">Keyword ${getSortIconForCol('searchTerm')}</th>
-                            <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'asin')">ASIN / SKU ${getSortIconForCol('asin')}</th>
-                            <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'queryVolume')" title="Search Query Volume">Vol ${getSortIconForCol('queryVolume')}</th>
-                            ${showRankCols ? `
-                            <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'bestRank')" title="Best Rank (last 30 days)">Best ${getSortIconForCol('bestRank')}</th>
-                            <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'avg30dRank')" title="30-Day Average Rank">30d Avg ${getSortIconForCol('avg30dRank')}</th>
-                            <th title="Rank Trend">Trend</th>
-                            ` : ''}
-                            <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'asinPurchases')" title="Your ASIN Purchases">Purch ${getSortIconForCol('asinPurchases')}</th>
-                            <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'purchaseShare')" title="Your Share of Purchases">Share ${getSortIconForCol('purchaseShare')}</th>
-                            <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'convDelta')">Conv Δ ${getSortIconForCol('convDelta')}</th>
-                            <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'acos')">ACOS ${getSortIconForCol('acos')}</th>
-                            <th class="sqp-insight-sortable" onclick="handleSqpInsightSort('${prefix}', 'spend')">Spend ${getSortIconForCol('spend')}</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${displayData.map(row => {
-                            const convDeltaClass = row.convDelta > 0 ? 'conv-delta-positive' : 'conv-delta-negative';
-                            const amazonUrl = 'https://www.amazon.' + marketplace + '/dp/' + row.asin;
-                            const sku = row.sku || '';
-                            
-                            // Purchase share color coding
-                            const purchaseShareClass = row.purchaseShare >= 10 ? 'conv-delta-positive' : (row.purchaseShare < 2 ? 'conv-delta-negative' : '');
-                            
-                            // Action badge
-                            let actionClass = 'review';
-                            if (row.action === 'Increase Bids' || row.action === 'Push Bids') actionClass = 'increase';
-                            else if (row.action === 'Reduce/Negate') actionClass = 'decrease';
-                            else if (row.action === 'Start Ads' || row.action === 'Dominate') actionClass = 'start';
-                            
-                            // Rank data
-                            const rankStats = row.spRankStats || {};
-                            const bestRank = rankStats.bestRank;
-                            const avg30d = rankStats.avg30d;
-                            const rankTrend = rankStats.trend || 'stable';
-                            const trendIcon = rankTrend === 'improving' ? '↑' : (rankTrend === 'declining' ? '↓' : '→');
-                            const trendColor = rankTrend === 'improving' ? '#059669' : (rankTrend === 'declining' ? '#dc2626' : '#6b7280');
-                            const bestRankColor = bestRank <= 5 ? '#059669' : (bestRank <= 10 ? '#d97706' : '#dc2626');
-                            
-                            return `<tr>
-                                <td class="search-term-text" title="${escapeHtml(row.searchTerm)}">${escapeHtml(row.searchTerm)}</td>
-                                <td class="sqp-asin-sku-cell">
-                                    <a href="${amazonUrl}" target="_blank" class="sqp-asin-link">${row.asin}</a>
-                                    ${sku ? '<span class="sku" title="' + escapeHtml(sku) + '">' + escapeHtml(sku) + '</span>' : ''}
-                                </td>
-                                <td style="text-align:right;color:#6b7280">${formatNumber(Math.round(row.queryVolume || 0))}</td>
-                                ${showRankCols ? `
-                                <td style="text-align:center;font-weight:600;color:${bestRankColor}">${bestRank !== null ? bestRank : '-'}</td>
-                                <td style="text-align:center;color:#6b7280">${avg30d !== null ? avg30d.toFixed(1) : '-'}</td>
-                                <td style="text-align:center;font-weight:700;font-size:1rem;color:${trendColor}">${trendIcon}</td>
-                                ` : ''}
-                                <td style="text-align:right;font-weight:600;color:#059669">${formatNumber(Math.round(row.asinPurchases || 0))}</td>
-                                <td class="${purchaseShareClass}" style="text-align:right">${row.purchaseShare ? row.purchaseShare.toFixed(1) + '%' : '-'}</td>
-                                <td class="${convDeltaClass}" style="text-align:right">${row.convDelta !== null ? (row.convDelta >= 0 ? '+' : '') + row.convDelta.toFixed(1) + '%' : '-'}</td>
-                                <td class="${getAcosColorClass(row.acos)}" style="text-align:right">${row.acos === Infinity ? '∞' : formatPercent(row.acos, 1)}</td>
-                                <td style="text-align:right">${formatCurrencyDecimal(row.spend)}</td>
-                                <td><span class="insight-action-badge ${actionClass}">${row.action}</span></td>
-                            </tr>`;
-                        }).join('')}
-                    </tbody>
-                </table>
-                ${hasMore ? `
-                    <div class="insight-pagination">
-                        <span>Showing ${showLimit} of ${formatNumber(sortedData.length)} results</span>
-                        <button onclick="showMoreInsightRows('${prefix}', 50)">Show 50 More</button>
-                        <button onclick="showMoreInsightRows('${prefix}', ${sortedData.length})">Show All (${formatNumber(sortedData.length)})</button>
-                    </div>
-                ` : (sortedData.length > 50 ? `
-                    <div class="insight-pagination">
-                        <span>Showing all ${formatNumber(sortedData.length)} results</span>
-                        <button onclick="showMoreInsightRows('${prefix}', 50, true)">Show Less</button>
-                    </div>
-                ` : '')}
-            `;
-        }
-        
-        // Show more rows handler
-        function showMoreInsightRows(prefix, count, reset = false) {
-            if (reset) {
-                sqpInsightShowLimit[prefix] = 50;
-            } else {
-                sqpInsightShowLimit[prefix] = count;
-            }
-            renderSqpStrategicInsights();
-        }
-        
-        // Sort handler for SQP insight tables
-        function handleSqpInsightSort(prefix, column) {
-            if (!sqpInsightSortState[prefix]) {
-                sqpInsightSortState[prefix] = { column: column, direction: 'desc' };
-            } else if (sqpInsightSortState[prefix].column === column) {
-                sqpInsightSortState[prefix].direction = sqpInsightSortState[prefix].direction === 'desc' ? 'asc' : 'desc';
-            } else {
-                sqpInsightSortState[prefix] = { column: column, direction: 'desc' };
-            }
-            // Re-render the insights
-            renderSqpStrategicInsights();
-        }
-        
-        function scrollToInsight(elementId) {
-            const el = document.getElementById(elementId);
-            if (el) {
-                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                el.parentElement.style.boxShadow = '0 0 0 3px #7c3aed';
-                setTimeout(() => {
-                    el.parentElement.style.boxShadow = '';
-                }, 2000);
-            }
-        }
-        
-        // Make SQP insights functions global
-        window.renderSqpStrategicInsights = renderSqpStrategicInsights;
-        window.scrollToInsight = scrollToInsight;
-        window.handleSqpInsightSort = handleSqpInsightSort;
-        window.showMoreInsightRows = showMoreInsightRows;
-
         // ==================== IMPRESSION SHARE TRENDS ====================
         
         const isDropZone = document.getElementById('isDropZone');
@@ -6235,15 +5569,6 @@
                     isResults.style.display = 'block';
                     isFileInfo.textContent = `Loaded: ${file.name} (${csvData.length.toLocaleString()} rows)`;
                     renderImpressionShareTable();
-                    
-                    // Always rebuild SP rank mapping when impression share data is loaded
-                    // This ensures SQP tab has access to rank data
-                    buildSpRankMapping();
-                    
-                    // Refresh SQP table if it's already loaded
-                    if (typeof window.getSqpDataLoaded === 'function' && window.getSqpDataLoaded()) {
-                        if (typeof window.renderSqpTable === 'function') window.renderSqpTable();
-                    }
                 } catch (err) {
                     console.error('Error parsing CSV:', err);
                     alert('Error parsing CSV file. Please check the format.');
@@ -6304,10 +5629,6 @@
         }
         
         function parseCSV(text) {
-            // Strip BOM if present
-            if (text.charCodeAt(0) === 0xFEFF) {
-                text = text.slice(1);
-            }
             const lines = text.split(/\r?\n/);
             if (lines.length < 2) return [];
             
@@ -7256,7 +6577,6 @@
         function buildAsinMapping() {
             // Build ASIN mapping from parsed SP data (Product ad entities)
             asinMapping.clear();
-            asinToSkuMapping.clear();
             
             if (!parsedData.sp || parsedData.sp.length === 0) {
                 console.warn('No SP data available for ASIN mapping');
@@ -7269,25 +6589,16 @@
                     const campaignId = row['Campaign ID'];
                     const adGroupId = row['Ad group ID'];
                     const asin = row['ASIN (Informational only)'];
-                    const sku = row['SKU'] || row['Sku'] || '';
                     
                     if (campaignId && adGroupId && asin) {
                         const key = `${campaignId}|||${adGroupId}`;
                         asinMapping.set(key, asin);
-                        
-                        // Also map ASIN to SKU
-                        if (asin && sku && !asinToSkuMapping.has(asin)) {
-                            asinToSkuMapping.set(asin, sku);
-                        }
                     }
                 }
             });
             
-            console.log(`Built ASIN mapping with ${asinMapping.size} entries, SKU mapping with ${asinToSkuMapping.size} entries`);
+            console.log(`Built ASIN mapping with ${asinMapping.size} entries`);
         }
-        
-        // SKU mapping
-        let asinToSkuMapping = new Map();
         
         function handleSqpFile(file) {
             if (!file.name.endsWith('.csv')) {
@@ -7324,11 +6635,6 @@
                     sqpResults.style.display = 'block';
                     sqpFileInfo.textContent = `Loaded: ${file.name} (${sqpData.length.toLocaleString()} rows)`;
                     renderSqpTable();
-                    
-                    // Also update Actionable Insights tab with SQP strategic insights
-                    if (typeof renderSqpStrategicInsights === 'function') {
-                        renderSqpStrategicInsights();
-                    }
                 } catch (err) {
                     console.error('Error parsing SQP CSV:', err);
                     alert('Error parsing SQP CSV file. Please check the format.');
@@ -7410,7 +6716,7 @@
             const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
             
             optionsContainer.innerHTML = sqpAllWeeks.map(week => {
-                const startStr = `${months[week.startDate.getMonth()]} ${week.startDate.getDate()}`;
+                const startStr = `${months[week.startDate.getMonth()]} ${week.startDate.getDate()}, ${week.startDate.getFullYear()}`;
                 const endStr = `${months[week.endDate.getMonth()]} ${week.endDate.getDate()}, ${week.endDate.getFullYear()}`;
                 
                 return `
@@ -7619,15 +6925,15 @@
                     ? (value.purchasesAsinCount / value.clicksAsinCount) * 100 
                     : 0;
                 
-                // Calculate CTR from raw counts
-                // Market CTR = Clicks: Total Count / Impressions: Total Count * 100
-                const marketCtr = value.impressionsTotalCount > 0 
-                    ? (value.clicksTotalCount / value.impressionsTotalCount) * 100 
+                // Calculate CTR using Amazon's definition: Clicks / Query Volume
+                // Market CTR = Clicks: Total Count / Query Volume * 100
+                const marketCtr = queryVolumeSum > 0 
+                    ? (value.clicksTotalCount / queryVolumeSum) * 100 
                     : 0;
                 
-                // ASIN CTR = Clicks: ASIN Count / Impressions: ASIN Count * 100
-                const asinCtr = value.impressionsAsinCount > 0 
-                    ? (value.clicksAsinCount / value.impressionsAsinCount) * 100 
+                // ASIN CTR = Clicks: ASIN Count / Query Volume * 100
+                const asinCtr = queryVolumeSum > 0 
+                    ? (value.clicksAsinCount / queryVolumeSum) * 100 
                     : 0;
                 
                 // Calculate impression share trend
@@ -7658,11 +6964,9 @@
                     clickPriceMarket: avg(value.clickPriceMarket),
                     weeklyImpShare: weeklyData,
                     impShareTrend: impShareTrend,
-                    // Raw purchase counts for statistical significance
+                    // Raw counts for strategic insights
                     purchasesAsinCount: value.purchasesAsinCount,
-                    purchasesTotalCount: value.purchasesTotalCount,
-                    clicksAsinCount: value.clicksAsinCount,
-                    clicksTotalCount: value.clicksTotalCount
+                    purchasesTotalCount: value.purchasesTotalCount
                 });
             });
             
@@ -7690,7 +6994,6 @@
                 
                 sqpCombinedData.push({
                     asin: stData.asin,
-                    sku: asinToSkuMapping.get(stData.asin) || '',
                     searchTerm: stData.searchTerm,
                     campaign: stData.campaign,
                     portfolio: stData.portfolio,
@@ -7721,461 +7024,76 @@
                     impressionShareSqp: sqpMatch.impressionShare,
                     weeklyImpShare: sqpMatch.weeklyImpShare,
                     impShareTrend: sqpMatch.impShareTrend,
-                    // Raw counts for statistical significance
+                    // Purchase counts for strategic insights
                     purchasesAsinCount: sqpMatch.purchasesAsinCount,
-                    purchasesTotalCount: sqpMatch.purchasesTotalCount,
-                    clicksAsinCount: sqpMatch.clicksAsinCount,
-                    clicksTotalCount: sqpMatch.clicksTotalCount
+                    purchasesTotalCount: sqpMatch.purchasesTotalCount
                 });
             });
             
             // Populate ASIN filter
             populateSqpFilters();
             
-            // Build SP rank mapping from impression share data
-            buildSpRankMapping();
+            // Update strategic insight counts
+            updateInsightCounts();
             
             console.log(`Combined data: ${sqpCombinedData.length} rows, ${sqpAllAsins.size} unique ASINs`);
         }
         
-        // SP Rank mapping - defined globally for cross-tab access
-        
-        function buildSpRankMapping() {
-            spRankMapping.clear();
+        function updateInsightCounts() {
+            // Hidden Gems count
+            const hgMaxCtr = 2, hgMinVol = 500, hgMinPurch = 5;
+            const hgCount = sqpCombinedData.filter(r => 
+                r.marketCtr < hgMaxCtr && 
+                r.queryVolume >= hgMinVol && 
+                r.purchasesAsinCount >= hgMinPurch && 
+                r.convDelta > 0
+            ).length;
+            document.getElementById('hiddenGemsCount').textContent = hgCount;
             
-            if (!parsedData.impressionShare || parsedData.impressionShare.length === 0) {
-                console.log('No impression share data available for SP rank mapping');
-                return;
-            }
+            // Scale Opps count
+            const soMinDelta = 3, soMaxImp = 15, soMaxAcos = 0.4, soMinPurch = 5;
+            const soCount = sqpCombinedData.filter(r => 
+                r.convDelta >= soMinDelta && 
+                r.impressionShareSqp < soMaxImp && 
+                (r.acos <= soMaxAcos || r.acos === Infinity) && 
+                r.purchasesAsinCount >= soMinPurch
+            ).length;
+            document.getElementById('scaleOppsCount').textContent = soCount;
             
-            console.log(`Building SP rank mapping from ${parsedData.impressionShare.length} impression share rows`);
-            
-            // Build mapping: search term (normalized) -> array of { date, rank }
-            let validRows = 0;
-            parsedData.impressionShare.forEach(row => {
-                const searchTerm = (row['Customer Search Term'] || '').toLowerCase().trim();
-                if (!searchTerm) return;
-                
-                const dateStr = row['Date'] || '';
-                const date = parseDateString(dateStr);
-                if (!date) return;
-                
-                const rank = parseInt(row['Search Term Impression Rank']) || 0;
-                if (rank === 0) return;
-                
-                validRows++;
-                
-                if (!spRankMapping.has(searchTerm)) {
-                    spRankMapping.set(searchTerm, []);
-                }
-                
-                spRankMapping.get(searchTerm).push({
-                    date: date,
-                    rank: rank
-                });
-            });
-            
-            // Sort each search term's data by date descending (newest first)
-            spRankMapping.forEach((data, key) => {
-                data.sort((a, b) => b.date - a.date);
-            });
-            
-            console.log(`Built SP rank mapping: ${spRankMapping.size} unique search terms from ${validRows} valid rows`);
-            
-            // Log a few sample entries for debugging
-            if (spRankMapping.size > 0) {
-                const sampleKeys = Array.from(spRankMapping.keys()).slice(0, 3);
-                console.log('Sample SP rank entries:', sampleKeys);
-            }
+            // Defend Position count
+            const dpMaxAcos = 0.35, dpMinSpend = 5, dpMinPurch = 3;
+            const dpCount = sqpCombinedData.filter(r => 
+                (r.acos <= dpMaxAcos || r.acos === Infinity) && 
+                r.spend >= dpMinSpend && 
+                r.purchasesAsinCount >= dpMinPurch && 
+                r.impShareTrend === 'decreasing'
+            ).length;
+            document.getElementById('defendPosCount').textContent = dpCount;
         }
-        
-        function getSpRankStats(searchTerm, endDate) {
-            const normalized = (searchTerm || '').toLowerCase().trim();
-            const rankData = spRankMapping.get(normalized);
-            
-            if (!rankData || rankData.length === 0) {
-                return { avg7d: null, avg14d: null, avg30d: null, bestRank: null, dailyData: [], trend: 'stable' };
-            }
-            
-            // Filter data up to endDate
-            const filteredData = rankData.filter(d => d.date <= endDate);
-            
-            if (filteredData.length === 0) {
-                return { avg7d: null, avg14d: null, avg30d: null, bestRank: null, dailyData: [], trend: 'stable' };
-            }
-            
-            // Calculate date thresholds
-            const d7 = new Date(endDate);
-            d7.setDate(d7.getDate() - 7);
-            const d14 = new Date(endDate);
-            d14.setDate(d14.getDate() - 14);
-            const d30 = new Date(endDate);
-            d30.setDate(d30.getDate() - 30);
-            
-            // Get ranks for each period
-            const ranks7d = filteredData.filter(d => d.date >= d7).map(d => d.rank);
-            const ranks14d = filteredData.filter(d => d.date >= d14).map(d => d.rank);
-            const ranks30d = filteredData.filter(d => d.date >= d30).map(d => d.rank);
-            const dailyData30d = filteredData.filter(d => d.date >= d30).sort((a, b) => a.date - b.date);
-            
-            // Calculate averages and best rank
-            const avg = arr => arr.length > 0 ? arr.reduce((a, b) => a + b, 0) / arr.length : null;
-            const best = arr => arr.length > 0 ? Math.min(...arr) : null;
-            
-            // Calculate trend (compare first half vs second half of 30d data)
-            // For rank, lower is better, so if second half avg < first half avg, it's improving
-            let trend = 'stable';
-            if (dailyData30d.length >= 4) {
-                const halfPoint = Math.floor(dailyData30d.length / 2);
-                const firstHalf = dailyData30d.slice(0, halfPoint);
-                const secondHalf = dailyData30d.slice(halfPoint);
-                const firstAvg = firstHalf.reduce((s, d) => s + d.rank, 0) / firstHalf.length;
-                const secondAvg = secondHalf.reduce((s, d) => s + d.rank, 0) / secondHalf.length;
-                const change = secondAvg - firstAvg;
-                // For rank, negative change means improvement (lower rank is better)
-                if (change <= -1) {
-                    trend = 'improving'; // Rank decreased = better position
-                } else if (change >= 1) {
-                    trend = 'declining'; // Rank increased = worse position
-                }
-            }
-            
-            return {
-                avg7d: avg(ranks7d),
-                avg14d: avg(ranks14d),
-                avg30d: avg(ranks30d),
-                bestRank: best(ranks30d),
-                dailyData: dailyData30d,
-                trend: trend
-            };
-        }
-        
-        function renderSpRankChart(searchTerm, idx) {
-            const spRankStats = getSpRankStats(searchTerm, currentSqpEndDate);
-            
-            if (!spRankStats.dailyData || spRankStats.dailyData.length === 0) {
-                return '-';
-            }
-            
-            const dailyData = spRankStats.dailyData;
-            const trend = spRankStats.trend;
-            
-            // Trend indicator - for rank, lower is better
-            let trendIcon = '→';
-            let trendColor = '#6b7280';
-            if (trend === 'improving') {
-                trendIcon = '↑';
-                trendColor = '#10b981'; // Green - improving (lower rank)
-            } else if (trend === 'declining') {
-                trendIcon = '↓';
-                trendColor = '#ef4444'; // Red - declining (higher rank)
-            }
-            
-            // Build mini bar chart (inverted - lower rank = taller bar)
-            const maxRank = Math.max(...dailyData.map(d => d.rank), 1);
-            const minRank = Math.min(...dailyData.map(d => d.rank), 1);
-            const range = maxRank - minRank + 1;
-            
-            // Show last 14 days max for mini chart
-            const chartData = dailyData.slice(-14);
-            const barWidth = Math.max(3, Math.floor(50 / chartData.length));
-            
-            const bars = chartData.map(d => {
-                // Invert so rank 1 is tallest, higher rank is shorter
-                const normalizedHeight = (maxRank - d.rank + 1) / range;
-                const height = Math.max(2, normalizedHeight * 18);
-                // Color based on rank - green for top 5, yellow for 6-15, red for 16+
-                let barColor = '#10b981'; // Green for rank 1-5
-                if (d.rank > 15) barColor = '#ef4444'; // Red for rank 16+
-                else if (d.rank > 5) barColor = '#f59e0b'; // Yellow for rank 6-15
-                return '<div style="width:' + barWidth + 'px;height:' + height + 'px;background:' + barColor + ';border-radius:1px;"></div>';
-            }).join('');
-            
-            return '<div class="sqp-rank-chart-cell" onclick="openSpRankModal(\'' + escapeHtml(searchTerm) + '\', ' + idx + ')" style="cursor:pointer;display:flex;align-items:center;gap:4px;" title="Click for details">' +
-                '<div style="display:flex;align-items:flex-end;gap:1px;height:18px;">' + bars + '</div>' +
-                '<span style="color:' + trendColor + ';font-weight:700;font-size:0.75rem;">' + trendIcon + '</span>' +
-            '</div>';
-        }
-        
-        function openSpRankModal(searchTerm, idx) {
-            const spRankStats = getSpRankStats(searchTerm, currentSqpEndDate);
-            
-            if (!spRankStats.dailyData || spRankStats.dailyData.length === 0) {
-                return;
-            }
-            
-            const dailyData = spRankStats.dailyData;
-            const trend = spRankStats.trend;
-            
-            // Calculate stats
-            const ranks = dailyData.map(d => d.rank);
-            const avg = ranks.reduce((a, b) => a + b, 0) / ranks.length;
-            const best = Math.min(...ranks);
-            const worst = Math.max(...ranks);
-            
-            // Calculate change
-            let changeValue = 0;
-            if (dailyData.length >= 2) {
-                const halfPoint = Math.floor(dailyData.length / 2);
-                const firstHalf = dailyData.slice(0, halfPoint);
-                const secondHalf = dailyData.slice(halfPoint);
-                const firstAvg = firstHalf.reduce((s, d) => s + d.rank, 0) / firstHalf.length;
-                const secondAvg = secondHalf.reduce((s, d) => s + d.rank, 0) / secondHalf.length;
-                changeValue = secondAvg - firstAvg;
-            }
-            
-            let trendClass = 'stable';
-            let trendArrow = '→';
-            // For rank, negative change = improvement
-            if (trend === 'improving') {
-                trendClass = 'up';
-                trendArrow = '↑';
-            } else if (trend === 'declining') {
-                trendClass = 'down';
-                trendArrow = '↓';
-            }
-            
-            // Use existing chart modal
-            const modal = document.getElementById('chartModal');
-            const titleEl = document.getElementById('chartModalTitle');
-            const subtitleEl = document.getElementById('chartModalSubtitle');
-            const statsEl = document.getElementById('chartModalStats');
-            
-            titleEl.textContent = '🎯 SP Impression Rank';
-            subtitleEl.textContent = searchTerm;
-            
-            statsEl.innerHTML = 
-                '<div class="chart-modal-stat">' +
-                    '<span class="chart-modal-stat-label">Average Rank</span>' +
-                    '<span class="chart-modal-stat-value" style="color:#0891b2">' + avg.toFixed(1) + '</span>' +
-                '</div>' +
-                '<div class="chart-modal-stat">' +
-                    '<span class="chart-modal-stat-label">Best Rank</span>' +
-                    '<span class="chart-modal-stat-value" style="color:#10b981">' + best + '</span>' +
-                '</div>' +
-                '<div class="chart-modal-stat">' +
-                    '<span class="chart-modal-stat-label">Worst Rank</span>' +
-                    '<span class="chart-modal-stat-value" style="color:#ef4444">' + worst + '</span>' +
-                '</div>' +
-                '<div class="chart-modal-stat">' +
-                    '<span class="chart-modal-stat-label">Trend</span>' +
-                    '<span class="chart-modal-stat-value">' +
-                        '<span class="chart-modal-stat-trend ' + trendClass + '">' + trendArrow + ' ' + (changeValue <= 0 ? '' : '+') + changeValue.toFixed(1) + '</span>' +
-                    '</span>' +
-                '</div>' +
-                '<div class="chart-modal-stat">' +
-                    '<span class="chart-modal-stat-label">Days</span>' +
-                    '<span class="chart-modal-stat-value">' + dailyData.length + ' days</span>' +
-                '</div>';
-            
-            // Render chart
-            renderSpRankDetailChart(dailyData);
-            
-            // Show modal
-            modal.classList.add('show');
-            document.addEventListener('keydown', handleModalEscape);
-            modal.addEventListener('click', handleModalOverlayClick);
-        }
-        
-        function renderSpRankDetailChart(dailyData) {
-            const canvas = document.getElementById('chartModalCanvas');
-            const ctx = canvas.getContext('2d');
-            
-            if (chartModalInstance) {
-                chartModalInstance.destroy();
-            }
-            
-            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-            const labels = dailyData.map(d => {
-                const date = d.date;
-                return months[date.getMonth()] + ' ' + date.getDate();
-            });
-            const values = dailyData.map(d => d.rank);
-            
-            // For rank, lower is better, so we'll use a reversed y-axis
-            chartModalInstance = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Rank',
-                        data: values,
-                        borderColor: '#0891b2',
-                        backgroundColor: 'rgba(8, 145, 178, 0.1)',
-                        borderWidth: 2,
-                        fill: true,
-                        tension: 0.3,
-                        pointRadius: 4,
-                        pointHoverRadius: 6,
-                        pointBackgroundColor: values.map(v => {
-                            if (v <= 5) return '#10b981';
-                            if (v <= 15) return '#f59e0b';
-                            return '#ef4444';
-                        })
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            reverse: true, // Lower rank = better = higher on chart
-                            beginAtZero: false,
-                            min: 1,
-                            title: {
-                                display: true,
-                                text: 'Rank (lower is better)'
-                            },
-                            ticks: {
-                                stepSize: 1,
-                                callback: function(value) {
-                                    return '#' + value;
-                                }
-                            }
-                        },
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Date'
-                            }
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return 'Rank: #' + context.raw;
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-        }
-        
-        // Expose rank functions globally
-        window.openSpRankModal = openSpRankModal;
-        window.renderSpRankChart = renderSpRankChart;
         
         function populateSqpFilters() {
+            const asinSelect = document.getElementById('sqpAsinFilter');
             const asins = Array.from(sqpAllAsins).sort();
             
-            // Initialize selected ASINs (all selected by default)
-            sqpSelectedAsins = new Set(asins);
-            
-            // Populate ASIN filter options
-            const asinOptionsContainer = document.getElementById('sqpAsinFilterOptions');
-            asinOptionsContainer.innerHTML = asins.map(asin => `
-                <label class="sqp-asin-option" data-asin="${asin}">
-                    <input type="checkbox" value="${asin}" checked onchange="toggleSqpAsin('${asin}')">
-                    <span>${asin}</span>
-                </label>
-            `).join('');
-            
-            updateAsinFilterLabel();
-            
-            // Setup ASIN dropdown toggle
-            const asinTrigger = document.getElementById('sqpAsinFilterTrigger');
-            const asinWrapper = document.getElementById('sqpAsinFilterWrapper');
-            
-            asinTrigger.addEventListener('click', (e) => {
-                e.stopPropagation();
-                asinWrapper.classList.toggle('open');
-                // Close week filter if open
-                document.querySelector('.sqp-week-filter-wrapper')?.classList.remove('open');
-            });
-            
-            // Setup ASIN search
-            const asinSearch = document.getElementById('sqpAsinFilterSearch');
-            asinSearch.addEventListener('input', (e) => {
-                const searchTerm = e.target.value.toLowerCase();
-                document.querySelectorAll('#sqpAsinFilterOptions .sqp-asin-option').forEach(opt => {
-                    const asin = opt.dataset.asin.toLowerCase();
-                    opt.classList.toggle('hidden', !asin.includes(searchTerm));
-                });
-            });
-            
-            // Close dropdown when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!asinWrapper.contains(e.target)) {
-                    asinWrapper.classList.remove('open');
-                }
-            });
+            asinSelect.innerHTML = '<option value="all">All ASINs</option>' +
+                asins.map(a => `<option value="${a}">${a}</option>`).join('');
                 
-            // Add event listeners for other filters
+            // Add event listeners
+            asinSelect.addEventListener('change', renderSqpTable);
             document.getElementById('sqpMinVolume').addEventListener('input', debounce(renderSqpTable, 300));
             document.getElementById('sqpMinSpend').addEventListener('input', debounce(renderSqpTable, 300));
             document.getElementById('sqpConvDeltaFilter').addEventListener('change', renderSqpTable);
         }
         
-        // ASIN filter state
-        let sqpSelectedAsins = new Set();
-        
-        function toggleSqpAsin(asin) {
-            if (sqpSelectedAsins.has(asin)) {
-                sqpSelectedAsins.delete(asin);
-            } else {
-                sqpSelectedAsins.add(asin);
-            }
-            updateAsinFilterLabel();
-            renderSqpTable();
-        }
-        
-        function sqpSelectAllAsins() {
-            const visibleAsins = [];
-            document.querySelectorAll('#sqpAsinFilterOptions .sqp-asin-option:not(.hidden)').forEach(opt => {
-                const asin = opt.dataset.asin;
-                visibleAsins.push(asin);
-                sqpSelectedAsins.add(asin);
-                opt.querySelector('input').checked = true;
-            });
-            updateAsinFilterLabel();
-            renderSqpTable();
-        }
-        
-        function sqpDeselectAllAsins() {
-            document.querySelectorAll('#sqpAsinFilterOptions .sqp-asin-option:not(.hidden)').forEach(opt => {
-                const asin = opt.dataset.asin;
-                sqpSelectedAsins.delete(asin);
-                opt.querySelector('input').checked = false;
-            });
-            updateAsinFilterLabel();
-            renderSqpTable();
-        }
-        
-        function updateAsinFilterLabel() {
-            const label = document.getElementById('sqpAsinFilterLabel');
-            const total = sqpAllAsins.size;
-            const selected = sqpSelectedAsins.size;
-            
-            if (selected === 0) {
-                label.textContent = 'No ASINs selected';
-            } else if (selected === total) {
-                label.textContent = `All ASINs (${total})`;
-            } else if (selected <= 2) {
-                label.textContent = Array.from(sqpSelectedAsins).slice(0, 2).join(', ');
-            } else {
-                label.textContent = `${selected} of ${total} ASINs`;
-            }
-        }
-        
         function renderSqpTable() {
-            // Rebuild SP rank mapping if impression share data exists but mapping is empty
-            if (spRankMapping.size === 0 && parsedData.impressionShare && parsedData.impressionShare.length > 0) {
-                buildSpRankMapping();
-            }
-            
+            const asinFilter = document.getElementById('sqpAsinFilter').value;
             const minVolume = parseFloat(document.getElementById('sqpMinVolume').value) || 0;
             const minSpend = parseFloat(document.getElementById('sqpMinSpend').value) || 0;
             const convDeltaFilter = document.getElementById('sqpConvDeltaFilter').value;
             
-            // Filter data using multi-select ASIN filter
+            // Filter data (all rows now have SQP data)
             let filtered = sqpCombinedData.filter(row => {
-                // ASIN filter: if no ASINs selected or ASIN is in selected set
-                if (sqpSelectedAsins.size > 0 && !sqpSelectedAsins.has(row.asin)) return false;
+                if (asinFilter !== 'all' && row.asin !== asinFilter) return false;
                 if (row.queryVolume < minVolume) return false;
                 if (row.spend < minSpend) return false;
                 if (convDeltaFilter === 'positive' && (row.convDelta === null || row.convDelta <= 0)) return false;
@@ -8195,7 +7113,6 @@
             
             // Get selected week range for display
             let weekRangeDisplay = '';
-            let sqpEndDate = new Date(); // Default to today
             if (sqpSelectedWeeks.size > 0 && sqpAllWeeks.length > 0) {
                 const selectedWeeksList = sqpAllWeeks.filter(w => sqpSelectedWeeks.has(w.date));
                 if (selectedWeeksList.length > 0) {
@@ -8204,13 +7121,8 @@
                     const lastWeek = sortedWeeks[sortedWeeks.length - 1];
                     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
                     weekRangeDisplay = `${months[firstWeek.startDate.getMonth()]} ${firstWeek.startDate.getDate()} - ${months[lastWeek.endDate.getMonth()]} ${lastWeek.endDate.getDate()}, ${lastWeek.endDate.getFullYear()}`;
-                    // Set sqpEndDate to the end of the last selected week
-                    sqpEndDate = new Date(lastWeek.endDate);
                 }
             }
-            
-            // Update global for sorting
-            currentSqpEndDate = sqpEndDate;
             
             document.getElementById('sqpSummaryBar').innerHTML = `
                 <div class="is-summary-item">
@@ -8241,14 +7153,6 @@
                     <span class="is-summary-label">Total Query Volume:</span>
                     <span class="is-summary-value">${formatNumber(Math.round(filtered.reduce((s, r) => s + r.queryVolume, 0)))}</span>
                 </div>
-                <div class="is-summary-item">
-                    <span class="is-summary-label">🎯 SP Rank Data:</span>
-                    <span class="is-summary-value">${spRankMapping.size > 0 
-                        ? '<span style="color:#4ade80">✓ ' + spRankMapping.size + ' terms</span> <a href="#" onclick="buildSpRankMapping();renderSqpTable();return false;" style="color:#60a5fa;font-size:0.7rem;margin-left:0.5rem;">(refresh)</a>' 
-                        : (parsedData.impressionShare && parsedData.impressionShare.length > 0 
-                            ? '<a href="#" onclick="buildSpRankMapping();renderSqpTable();return false;" style="color:#60a5fa;text-decoration:underline;">Click to load ' + parsedData.impressionShare.length + ' rows</a>' 
-                            : '<span style="color:#f87171">✗ Upload Impression Share CSV first</span>')}</span>
-                </div>
             `;
             
             // Build table
@@ -8263,15 +7167,13 @@
                 <table>
                     <thead>
                         <tr>
-                            <th colspan="3" class="sqp-header-group" style="border-right:2px solid rgba(255,255,255,0.3)">Search Term</th>
-                            <th colspan="10" class="sqp-header-group" style="background:linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%)">SQP Aggregated Weekly Report</th>
-                            <th colspan="5" class="sqp-header-group" style="background:linear-gradient(135deg, #0891b2 0%, #22d3ee 100%)">SP Impression Rank</th>
-                            <th colspan="7" class="sqp-header-sp">Sponsored Products Search Term Stats</th>
+                            <th colspan="2" class="sqp-header-group" style="border-right:2px solid rgba(255,255,255,0.3)">Search Term</th>
+                            <th colspan="8" class="sqp-header-group" style="background:linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%)">SQP Aggregated Weekly Report</th>
+                            <th colspan="6" class="sqp-header-sp">Sponsored Products Search Term Stats</th>
                         </tr>
                         <tr>
                             <th class="sqp-sticky-col sortable-header" onclick="sortSqp('searchTerm')" style="min-width:180px">Keyword ${getSqpSortIcon('searchTerm')}</th>
                             <th class="sortable-header" onclick="sortSqp('asin')">ASIN ${getSqpSortIcon('asin')}</th>
-                            <th class="sortable-header" onclick="sortSqp('sku')">SKU ${getSqpSortIcon('sku')}</th>
                             <th class="sortable-header" onclick="sortSqp('queryVolume')">Query Vol ${getSqpSortIcon('queryVolume')}</th>
                             <th class="sortable-header" onclick="sortSqp('marketConvRate')">Market Conv ${getSqpSortIcon('marketConvRate')}</th>
                             <th class="sortable-header" onclick="sortSqp('asinConvRate')">ASIN Conv ${getSqpSortIcon('asinConvRate')}</th>
@@ -8279,20 +7181,13 @@
                             <th class="sortable-header" onclick="sortSqp('asinCtr')">ASIN CTR ${getSqpSortIcon('asinCtr')}</th>
                             <th class="sortable-header" onclick="sortSqp('marketCtr')">Mkt CTR ${getSqpSortIcon('marketCtr')}</th>
                             <th class="sortable-header" onclick="sortSqp('ctrDelta')">CTR Δ ${getSqpSortIcon('ctrDelta')}</th>
-                            <th class="sortable-header" onclick="sortSqp('clickPriceMarket')">Price (Mkt) ${getSqpSortIcon('clickPriceMarket')}</th>
-                            <th class="sortable-header" onclick="sortSqp('clickPriceAsin')">Price (ASIN) ${getSqpSortIcon('clickPriceAsin')}</th>
                             <th class="sortable-header" onclick="sortSqp('impressionShareSqp')">Imp Share ${getSqpSortIcon('impressionShareSqp')}</th>
-                            <th title="Rank Trend Chart (click for details)">Rank Trend</th>
-                            <th class="sortable-header" onclick="sortSqp('spRank7d')" title="7 Day Average Rank">7d Avg ${getSqpSortIcon('spRank7d')}</th>
-                            <th class="sortable-header" onclick="sortSqp('spRank14d')" title="14 Day Average Rank">14d Avg ${getSqpSortIcon('spRank14d')}</th>
-                            <th class="sortable-header" onclick="sortSqp('spRank30d')" title="30 Day Average Rank">30d Avg ${getSqpSortIcon('spRank30d')}</th>
-                            <th class="sortable-header" onclick="sortSqp('spRankBest')" title="Best Rank in 30 Days">Best ${getSqpSortIcon('spRankBest')}</th>
                             <th class="sortable-header" onclick="sortSqp('sales')">Sales ${getSqpSortIcon('sales')}</th>
                             <th class="sortable-header" onclick="sortSqp('acos')">ACOS ${getSqpSortIcon('acos')}</th>
                             <th class="sortable-header" onclick="sortSqp('spend')">Spend ${getSqpSortIcon('spend')}</th>
                             <th class="sortable-header" onclick="sortSqp('units')">Units ${getSqpSortIcon('units')}</th>
-                            <th class="sortable-header" onclick="sortSqp('cvr')">CVR % ${getSqpSortIcon('cvr')}</th>
                             <th class="sortable-header" onclick="sortSqp('cpc')">CPC ${getSqpSortIcon('cpc')}</th>
+                            <th class="sortable-header" onclick="sortSqp('clickPriceAsin')">Click Price ${getSqpSortIcon('clickPriceAsin')}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -8300,46 +7195,27 @@
                             const convDeltaClass = row.convDelta !== null ? 
                                 (row.convDelta > 0 ? 'conv-delta-positive' : (row.convDelta < 0 ? 'conv-delta-negative' : '')) : '';
                             const ctrDeltaClass = row.ctrDelta > 0 ? 'conv-delta-positive' : (row.ctrDelta < 0 ? 'conv-delta-negative' : '');
-                            const marketplace = document.getElementById('marketplace')?.value || 'de';
-                            const amazonUrl = 'https://www.amazon.' + marketplace + '/dp/' + row.asin;
-                            const cvr = row.clicks > 0 ? (row.orders / row.clicks * 100) : 0;
-                            const cvrClass = cvr >= 15 ? 'conv-delta-positive' : (cvr < 5 && cvr > 0 ? 'conv-delta-negative' : '');
                             
-                            // Get SP rank stats based on SQP end date
-                            const spRankStats = getSpRankStats(row.searchTerm, sqpEndDate);
-                            const rankClass7d = spRankStats.avg7d !== null && spRankStats.avg7d <= 5 ? 'conv-delta-positive' : (spRankStats.avg7d !== null && spRankStats.avg7d > 20 ? 'conv-delta-negative' : '');
-                            const rankClass14d = spRankStats.avg14d !== null && spRankStats.avg14d <= 5 ? 'conv-delta-positive' : (spRankStats.avg14d !== null && spRankStats.avg14d > 20 ? 'conv-delta-negative' : '');
-                            const rankClass30d = spRankStats.avg30d !== null && spRankStats.avg30d <= 5 ? 'conv-delta-positive' : (spRankStats.avg30d !== null && spRankStats.avg30d > 20 ? 'conv-delta-negative' : '');
-                            const rankClassBest = spRankStats.bestRank !== null && spRankStats.bestRank <= 3 ? 'conv-delta-positive' : '';
-                            
-                            return '<tr>' +
-                                '<td class="sqp-sticky-col sqp-search-term-cell">' +
-                                    '<span class="sqp-search-term-text" title="' + escapeHtml(row.searchTerm) + '">' + escapeHtml(row.searchTerm) + '</span>' +
-                                '</td>' +
-                                '<td><a href="' + amazonUrl + '" target="_blank" class="sqp-asin-link" title="View on Amazon">' + row.asin + '</a></td>' +
-                                '<td class="sqp-sku-cell" title="' + escapeHtml(row.sku || '') + '">' + escapeHtml(row.sku || '-') + '</td>' +
-                                '<td class="sqp-kpi-cell">' + formatNumber(Math.round(row.queryVolume)) + '</td>' +
-                                '<td class="sqp-kpi-cell">' + row.marketConvRate.toFixed(2) + '%</td>' +
-                                '<td class="sqp-kpi-cell">' + row.asinConvRate.toFixed(2) + '%</td>' +
-                                '<td class="sqp-kpi-cell ' + convDeltaClass + '">' + (row.convDelta !== null ? (row.convDelta >= 0 ? '+' : '') + row.convDelta.toFixed(2) + '%' : '-') + '</td>' +
-                                '<td class="sqp-kpi-cell">' + row.asinCtr.toFixed(2) + '%</td>' +
-                                '<td class="sqp-kpi-cell">' + row.marketCtr.toFixed(2) + '%</td>' +
-                                '<td class="sqp-kpi-cell ' + ctrDeltaClass + '">' + (row.ctrDelta >= 0 ? '+' : '') + row.ctrDelta.toFixed(2) + '%</td>' +
-                                '<td class="sqp-kpi-cell">' + (row.clickPriceMarket > 0 ? formatCurrencyDecimal(row.clickPriceMarket) : '-') + '</td>' +
-                                '<td class="sqp-kpi-cell">' + (row.clickPriceAsin > 0 ? formatCurrencyDecimal(row.clickPriceAsin) : '-') + '</td>' +
-                                '<td class="sqp-kpi-cell">' + renderSqpImpShareChart(row, idx) + '</td>' +
-                                '<td class="sqp-kpi-cell">' + renderSpRankChart(row.searchTerm, idx) + '</td>' +
-                                '<td class="sqp-kpi-cell ' + rankClass7d + '">' + (spRankStats.avg7d !== null ? spRankStats.avg7d.toFixed(1) : '-') + '</td>' +
-                                '<td class="sqp-kpi-cell ' + rankClass14d + '">' + (spRankStats.avg14d !== null ? spRankStats.avg14d.toFixed(1) : '-') + '</td>' +
-                                '<td class="sqp-kpi-cell ' + rankClass30d + '">' + (spRankStats.avg30d !== null ? spRankStats.avg30d.toFixed(1) : '-') + '</td>' +
-                                '<td class="sqp-kpi-cell ' + rankClassBest + '">' + (spRankStats.bestRank !== null ? spRankStats.bestRank : '-') + '</td>' +
-                                '<td class="sqp-kpi-cell">' + formatCurrencyDecimal(row.sales) + '</td>' +
-                                '<td class="sqp-kpi-cell ' + getAcosColorClass(row.acos) + '">' + (row.acos === Infinity ? '∞' : formatPercent(row.acos, 1)) + '</td>' +
-                                '<td class="sqp-kpi-cell">' + formatCurrencyDecimal(row.spend) + '</td>' +
-                                '<td class="sqp-kpi-cell">' + formatNumber(row.units) + '</td>' +
-                                '<td class="sqp-kpi-cell ' + cvrClass + '">' + (cvr > 0 ? cvr.toFixed(1) + '%' : '-') + '</td>' +
-                                '<td class="sqp-kpi-cell">' + formatCurrencyDecimal(row.cpc) + '</td>' +
-                            '</tr>';
+                            return `<tr>
+                                <td class="sqp-sticky-col sqp-search-term-cell">
+                                    <span class="sqp-search-term-text" title="${escapeHtml(row.searchTerm)}">${escapeHtml(row.searchTerm)}</span>
+                                </td>
+                                <td class="sqp-asin-text">${row.asin}</td>
+                                <td class="sqp-kpi-cell">${formatNumber(Math.round(row.queryVolume))}</td>
+                                <td class="sqp-kpi-cell">${row.marketConvRate.toFixed(2)}%</td>
+                                <td class="sqp-kpi-cell">${row.asinConvRate.toFixed(2)}%</td>
+                                <td class="sqp-kpi-cell ${convDeltaClass}">${row.convDelta !== null ? (row.convDelta >= 0 ? '+' : '') + row.convDelta.toFixed(2) + '%' : '-'}</td>
+                                <td class="sqp-kpi-cell">${row.asinCtr.toFixed(2)}%</td>
+                                <td class="sqp-kpi-cell">${row.marketCtr.toFixed(2)}%</td>
+                                <td class="sqp-kpi-cell ${ctrDeltaClass}">${(row.ctrDelta >= 0 ? '+' : '') + row.ctrDelta.toFixed(2)}%</td>
+                                <td class="sqp-kpi-cell">${renderSqpImpShareChart(row, idx)}</td>
+                                <td class="sqp-kpi-cell">${formatCurrencyDecimal(row.sales)}</td>
+                                <td class="sqp-kpi-cell ${getAcosColorClass(row.acos)}">${row.acos === Infinity ? '∞' : formatPercent(row.acos, 1)}</td>
+                                <td class="sqp-kpi-cell">${formatCurrencyDecimal(row.spend)}</td>
+                                <td class="sqp-kpi-cell">${formatNumber(row.units)}</td>
+                                <td class="sqp-kpi-cell">${formatCurrencyDecimal(row.cpc)}</td>
+                                <td class="sqp-kpi-cell">${row.clickPriceAsin > 0 ? formatCurrencyDecimal(row.clickPriceAsin) : '-'}</td>
+                            </tr>`;
                         }).join('')}
                     </tbody>
                 </table>
@@ -8380,10 +7256,6 @@
                         aVal = a.asin;
                         bVal = b.asin;
                         break;
-                    case 'sku':
-                        aVal = (a.sku || '').toLowerCase();
-                        bVal = (b.sku || '').toLowerCase();
-                        break;
                     case 'queryVolume':
                         aVal = a.queryVolume || 0;
                         bVal = b.queryVolume || 0;
@@ -8420,10 +7292,6 @@
                         aVal = a.clickPriceAsin || 0;
                         bVal = b.clickPriceAsin || 0;
                         break;
-                    case 'clickPriceMarket':
-                        aVal = a.clickPriceMarket || 0;
-                        bVal = b.clickPriceMarket || 0;
-                        break;
                     case 'spend':
                         aVal = a.spend || 0;
                         bVal = b.spend || 0;
@@ -8444,34 +7312,6 @@
                         aVal = a.cpc || 0;
                         bVal = b.cpc || 0;
                         break;
-                    case 'cvr':
-                        aVal = a.clicks > 0 ? (a.orders / a.clicks) : 0;
-                        bVal = b.clicks > 0 ? (b.orders / b.clicks) : 0;
-                        break;
-                    case 'spRank7d':
-                        const aRank7d = getSpRankStats(a.searchTerm, currentSqpEndDate);
-                        const bRank7d = getSpRankStats(b.searchTerm, currentSqpEndDate);
-                        aVal = aRank7d.avg7d !== null ? aRank7d.avg7d : 9999;
-                        bVal = bRank7d.avg7d !== null ? bRank7d.avg7d : 9999;
-                        break;
-                    case 'spRank14d':
-                        const aRank14d = getSpRankStats(a.searchTerm, currentSqpEndDate);
-                        const bRank14d = getSpRankStats(b.searchTerm, currentSqpEndDate);
-                        aVal = aRank14d.avg14d !== null ? aRank14d.avg14d : 9999;
-                        bVal = bRank14d.avg14d !== null ? bRank14d.avg14d : 9999;
-                        break;
-                    case 'spRank30d':
-                        const aRank30d = getSpRankStats(a.searchTerm, currentSqpEndDate);
-                        const bRank30d = getSpRankStats(b.searchTerm, currentSqpEndDate);
-                        aVal = aRank30d.avg30d !== null ? aRank30d.avg30d : 9999;
-                        bVal = bRank30d.avg30d !== null ? bRank30d.avg30d : 9999;
-                        break;
-                    case 'spRankBest':
-                        const aRankBest = getSpRankStats(a.searchTerm, currentSqpEndDate);
-                        const bRankBest = getSpRankStats(b.searchTerm, currentSqpEndDate);
-                        aVal = aRankBest.bestRank !== null ? aRankBest.bestRank : 9999;
-                        bVal = bRankBest.bestRank !== null ? bRankBest.bestRank : 9999;
-                        break;
                     default:
                         aVal = a.spend || 0;
                         bVal = b.spend || 0;
@@ -8487,21 +7327,257 @@
         // Make SQP functions global
         window.sortSqp = sortSqp;
         window.renderSqpTable = renderSqpTable;
-        window.buildSpRankMapping = buildSpRankMapping;
         window.toggleSqpWeek = toggleSqpWeek;
         window.sqpSelectAllWeeks = sqpSelectAllWeeks;
         window.sqpDeselectAllWeeks = sqpDeselectAllWeeks;
         window.openSqpImpShareModal = openSqpImpShareModal;
-        window.toggleSqpAsin = toggleSqpAsin;
-        window.sqpSelectAllAsins = sqpSelectAllAsins;
-        window.sqpDeselectAllAsins = sqpDeselectAllAsins;
-        window.getSqpDataLoaded = function() { return sqpCombinedData && sqpCombinedData.length > 0; };
+        window.toggleSqpInsight = toggleSqpInsight;
+        window.renderHiddenGems = renderHiddenGems;
+        window.renderScaleOpps = renderScaleOpps;
+        window.renderDefendPos = renderDefendPos;
+        
+        // Toggle insight section
+        function toggleSqpInsight(section) {
+            const contentId = section + 'Content';
+            const content = document.getElementById(contentId);
+            const card = content.closest('.sqp-insight-card');
+            
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                card.classList.add('open');
+                // Render the section when opened
+                if (section === 'hiddenGems') renderHiddenGems();
+                else if (section === 'scaleOpps') renderScaleOpps();
+                else if (section === 'defendPos') renderDefendPos();
+            } else {
+                content.style.display = 'none';
+                card.classList.remove('open');
+            }
+        }
+        
+        // Hidden Gems: Low competition + high conversion
+        function renderHiddenGems() {
+            const maxMarketCtr = parseFloat(document.getElementById('hgMarketCtr').value) || 2;
+            const minQueryVol = parseFloat(document.getElementById('hgQueryVol').value) || 500;
+            const minPurchases = parseFloat(document.getElementById('hgMinPurchases').value) || 5;
+            
+            // Filter data
+            const filtered = sqpCombinedData.filter(row => {
+                if (row.marketCtr >= maxMarketCtr) return false;
+                if (row.queryVolume < minQueryVol) return false;
+                if (!row.purchasesAsinCount || row.purchasesAsinCount < minPurchases) return false;
+                if (row.convDelta === null || row.convDelta <= 0) return false;
+                return true;
+            }).sort((a, b) => (b.purchasesAsinCount || 0) - (a.purchasesAsinCount || 0));
+            
+            // Update badge
+            document.getElementById('hiddenGemsCount').textContent = filtered.length;
+            
+            // Calculate summary
+            const totalQueryVol = filtered.reduce((s, r) => s + r.queryVolume, 0);
+            const totalPurchases = filtered.reduce((s, r) => s + (r.purchasesAsinCount || 0), 0);
+            const totalMarketPurchases = filtered.reduce((s, r) => s + (r.purchasesTotalCount || 0), 0);
+            const totalSpend = filtered.reduce((s, r) => s + r.spend, 0);
+            const totalSales = filtered.reduce((s, r) => s + r.sales, 0);
+            
+            document.getElementById('hiddenGemsSummary').innerHTML = `
+                <span class="sqp-insight-summary-item"><span class="sqp-insight-summary-label">Keywords:</span> <span class="sqp-insight-summary-value">${filtered.length}</span></span>
+                <span class="sqp-insight-summary-item"><span class="sqp-insight-summary-label">Query Volume:</span> <span class="sqp-insight-summary-value">${formatNumber(totalQueryVol)}</span></span>
+                <span class="sqp-insight-summary-item"><span class="sqp-insight-summary-label">Your Purchases:</span> <span class="sqp-insight-summary-value">${formatNumber(totalPurchases)}</span></span>
+                <span class="sqp-insight-summary-item"><span class="sqp-insight-summary-label">Market Purchases:</span> <span class="sqp-insight-summary-value">${formatNumber(totalMarketPurchases)}</span></span>
+                <span class="sqp-insight-summary-item"><span class="sqp-insight-summary-label">Spend:</span> <span class="sqp-insight-summary-value">${formatCurrencyDecimal(totalSpend)}</span></span>
+                <span class="sqp-insight-summary-item"><span class="sqp-insight-summary-label">Sales:</span> <span class="sqp-insight-summary-value">${formatCurrencyDecimal(totalSales)}</span></span>
+            `;
+            
+            // Render table
+            document.getElementById('hiddenGemsTable').innerHTML = filtered.length === 0 
+                ? '<div style="padding:1rem;text-align:center;color:#666;">No hidden gems found with current filters</div>'
+                : `<table>
+                    <thead>
+                        <tr>
+                            <th>Keyword</th>
+                            <th>ASIN</th>
+                            <th>Vol</th>
+                            <th>Purch</th>
+                            <th>Mkt</th>
+                            <th>Share</th>
+                            <th>Conv Δ</th>
+                            <th>Imp Share</th>
+                            <th>ACOS</th>
+                            <th>Spend</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${filtered.slice(0, 50).map(row => {
+                            const purchaseShare = row.purchasesTotalCount > 0 ? (row.purchasesAsinCount / row.purchasesTotalCount) * 100 : 0;
+                            return `<tr>
+                                <td title="${escapeHtml(row.searchTerm)}">${escapeHtml(row.searchTerm.substring(0, 20))}${row.searchTerm.length > 20 ? '...' : ''}</td>
+                                <td style="font-size:0.65rem;color:#7c3aed">${row.asin}</td>
+                                <td>${formatNumber(row.queryVolume)}</td>
+                                <td style="color:#10b981;font-weight:600">${formatNumber(row.purchasesAsinCount || 0)}</td>
+                                <td>${formatNumber(row.purchasesTotalCount || 0)}</td>
+                                <td style="color:#3b82f6;font-weight:600">${purchaseShare.toFixed(1)}%</td>
+                                <td class="conv-delta-positive">+${row.convDelta.toFixed(1)}%</td>
+                                <td>${row.impressionShareSqp.toFixed(1)}%</td>
+                                <td class="${getAcosColorClass(row.acos)}">${formatPercent(row.acos, 1)}</td>
+                                <td>${formatCurrencyDecimal(row.spend)}</td>
+                                <td><span class="sqp-insight-action dominate">DOMINATE</span></td>
+                            </tr>`;
+                        }).join('')}
+                    </tbody>
+                </table>`;
+        }
+        
+        // Scale Opportunities: High conversion delta but low impression share
+        function renderScaleOpps() {
+            const minConvDelta = parseFloat(document.getElementById('soConvDelta').value) || 3;
+            const maxImpShare = parseFloat(document.getElementById('soImpShare').value) || 15;
+            const maxAcos = parseFloat(document.getElementById('soAcos').value) || 40;
+            const minPurchases = parseFloat(document.getElementById('soMinPurchases').value) || 5;
+            
+            // Filter data
+            const filtered = sqpCombinedData.filter(row => {
+                if (row.convDelta === null || row.convDelta < minConvDelta) return false;
+                if (row.impressionShareSqp >= maxImpShare) return false;
+                if (row.acos > maxAcos / 100 && row.acos !== Infinity) return false;
+                if (!row.purchasesAsinCount || row.purchasesAsinCount < minPurchases) return false;
+                return true;
+            }).sort((a, b) => (b.purchasesAsinCount || 0) - (a.purchasesAsinCount || 0));
+            
+            // Update badge
+            document.getElementById('scaleOppsCount').textContent = filtered.length;
+            
+            // Calculate summary
+            const totalQueryVol = filtered.reduce((s, r) => s + r.queryVolume, 0);
+            const totalPurchases = filtered.reduce((s, r) => s + (r.purchasesAsinCount || 0), 0);
+            const totalMarketPurchases = filtered.reduce((s, r) => s + (r.purchasesTotalCount || 0), 0);
+            const totalSpend = filtered.reduce((s, r) => s + r.spend, 0);
+            const totalSales = filtered.reduce((s, r) => s + r.sales, 0);
+            
+            document.getElementById('scaleOppsSummary').innerHTML = `
+                <span class="sqp-insight-summary-item"><span class="sqp-insight-summary-label">Keywords:</span> <span class="sqp-insight-summary-value">${filtered.length}</span></span>
+                <span class="sqp-insight-summary-item"><span class="sqp-insight-summary-label">Query Volume:</span> <span class="sqp-insight-summary-value">${formatNumber(totalQueryVol)}</span></span>
+                <span class="sqp-insight-summary-item"><span class="sqp-insight-summary-label">Your Purchases:</span> <span class="sqp-insight-summary-value">${formatNumber(totalPurchases)}</span></span>
+                <span class="sqp-insight-summary-item"><span class="sqp-insight-summary-label">Market Purchases:</span> <span class="sqp-insight-summary-value">${formatNumber(totalMarketPurchases)}</span></span>
+                <span class="sqp-insight-summary-item"><span class="sqp-insight-summary-label">Spend:</span> <span class="sqp-insight-summary-value">${formatCurrencyDecimal(totalSpend)}</span></span>
+                <span class="sqp-insight-summary-item"><span class="sqp-insight-summary-label">Sales:</span> <span class="sqp-insight-summary-value">${formatCurrencyDecimal(totalSales)}</span></span>
+            `;
+            
+            // Render table
+            document.getElementById('scaleOppsTable').innerHTML = filtered.length === 0 
+                ? '<div style="padding:1rem;text-align:center;color:#666;">No scale opportunities found with current filters</div>'
+                : `<table>
+                    <thead>
+                        <tr>
+                            <th>Keyword</th>
+                            <th>ASIN</th>
+                            <th>Vol</th>
+                            <th>Purch</th>
+                            <th>Share</th>
+                            <th>Conv Δ</th>
+                            <th>Imp Share</th>
+                            <th>ACOS</th>
+                            <th>Spend</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${filtered.slice(0, 50).map(row => {
+                            const purchaseShare = row.purchasesTotalCount > 0 ? (row.purchasesAsinCount / row.purchasesTotalCount) * 100 : 0;
+                            return `<tr>
+                                <td title="${escapeHtml(row.searchTerm)}">${escapeHtml(row.searchTerm.substring(0, 20))}${row.searchTerm.length > 20 ? '...' : ''}</td>
+                                <td style="font-size:0.65rem;color:#7c3aed">${row.asin}</td>
+                                <td>${formatNumber(row.queryVolume)}</td>
+                                <td style="color:#10b981;font-weight:600">${formatNumber(row.purchasesAsinCount || 0)}</td>
+                                <td style="color:#3b82f6;font-weight:600">${purchaseShare.toFixed(1)}%</td>
+                                <td class="conv-delta-positive">+${row.convDelta.toFixed(1)}%</td>
+                                <td style="color:#f59e0b;font-weight:600">${row.impressionShareSqp.toFixed(1)}%</td>
+                                <td class="${getAcosColorClass(row.acos)}">${formatPercent(row.acos, 1)}</td>
+                                <td>${formatCurrencyDecimal(row.spend)}</td>
+                                <td><span class="sqp-insight-action scale">SCALE</span></td>
+                            </tr>`;
+                        }).join('')}
+                    </tbody>
+                </table>`;
+        }
+        
+        // Defend Position: Profitable but declining impression share
+        function renderDefendPos() {
+            const maxAcos = parseFloat(document.getElementById('dpAcos').value) || 35;
+            const minSpend = parseFloat(document.getElementById('dpMinSpend').value) || 5;
+            const minPurchases = parseFloat(document.getElementById('dpMinPurchases').value) || 3;
+            
+            // Filter data - only declining trends
+            const filtered = sqpCombinedData.filter(row => {
+                if (row.acos > maxAcos / 100 && row.acos !== Infinity) return false;
+                if (row.spend < minSpend) return false;
+                if (!row.purchasesAsinCount || row.purchasesAsinCount < minPurchases) return false;
+                if (row.impShareTrend !== 'decreasing') return false;
+                return true;
+            }).sort((a, b) => (b.purchasesAsinCount || 0) - (a.purchasesAsinCount || 0));
+            
+            // Update badge
+            document.getElementById('defendPosCount').textContent = filtered.length;
+            
+            // Calculate summary
+            const totalQueryVol = filtered.reduce((s, r) => s + r.queryVolume, 0);
+            const totalPurchases = filtered.reduce((s, r) => s + (r.purchasesAsinCount || 0), 0);
+            const totalMarketPurchases = filtered.reduce((s, r) => s + (r.purchasesTotalCount || 0), 0);
+            const totalSpend = filtered.reduce((s, r) => s + r.spend, 0);
+            const totalSales = filtered.reduce((s, r) => s + r.sales, 0);
+            
+            document.getElementById('defendPosSummary').innerHTML = `
+                <span class="sqp-insight-summary-item"><span class="sqp-insight-summary-label">Keywords:</span> <span class="sqp-insight-summary-value">${filtered.length}</span></span>
+                <span class="sqp-insight-summary-item"><span class="sqp-insight-summary-label">Query Volume:</span> <span class="sqp-insight-summary-value">${formatNumber(totalQueryVol)}</span></span>
+                <span class="sqp-insight-summary-item"><span class="sqp-insight-summary-label">Your Purchases:</span> <span class="sqp-insight-summary-value">${formatNumber(totalPurchases)}</span></span>
+                <span class="sqp-insight-summary-item"><span class="sqp-insight-summary-label">Market Purchases:</span> <span class="sqp-insight-summary-value">${formatNumber(totalMarketPurchases)}</span></span>
+                <span class="sqp-insight-summary-item"><span class="sqp-insight-summary-label">Spend:</span> <span class="sqp-insight-summary-value">${formatCurrencyDecimal(totalSpend)}</span></span>
+                <span class="sqp-insight-summary-item"><span class="sqp-insight-summary-label">Sales:</span> <span class="sqp-insight-summary-value">${formatCurrencyDecimal(totalSales)}</span></span>
+            `;
+            
+            // Render table
+            document.getElementById('defendPosTable').innerHTML = filtered.length === 0 
+                ? '<div style="padding:1rem;text-align:center;color:#666;">No defend positions found with current filters</div>'
+                : `<table>
+                    <thead>
+                        <tr>
+                            <th>Keyword</th>
+                            <th>ASIN</th>
+                            <th>Vol</th>
+                            <th>Trend</th>
+                            <th>Purch</th>
+                            <th>Share</th>
+                            <th>Conv Δ</th>
+                            <th>Imp Share</th>
+                            <th>ACOS</th>
+                            <th>Spend</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${filtered.slice(0, 50).map(row => {
+                            const purchaseShare = row.purchasesTotalCount > 0 ? (row.purchasesAsinCount / row.purchasesTotalCount) * 100 : 0;
+                            return `<tr>
+                                <td title="${escapeHtml(row.searchTerm)}">${escapeHtml(row.searchTerm.substring(0, 20))}${row.searchTerm.length > 20 ? '...' : ''}</td>
+                                <td style="font-size:0.65rem;color:#7c3aed">${row.asin}</td>
+                                <td>${formatNumber(row.queryVolume)}</td>
+                                <td><span class="sqp-trend-indicator down">↓ Declining</span></td>
+                                <td style="color:#10b981;font-weight:600">${formatNumber(row.purchasesAsinCount || 0)}</td>
+                                <td style="color:#3b82f6;font-weight:600">${purchaseShare.toFixed(1)}%</td>
+                                <td class="${row.convDelta > 0 ? 'conv-delta-positive' : 'conv-delta-negative'}">${row.convDelta !== null ? (row.convDelta >= 0 ? '+' : '') + row.convDelta.toFixed(1) + '%' : '-'}</td>
+                                <td style="color:#ef4444;font-weight:600">${row.impressionShareSqp.toFixed(1)}%</td>
+                                <td class="${getAcosColorClass(row.acos)}">${formatPercent(row.acos, 1)}</td>
+                                <td>${formatCurrencyDecimal(row.spend)}</td>
+                                <td><span class="sqp-insight-action defend">DEFEND</span></td>
+                            </tr>`;
+                        }).join('')}
+                    </tbody>
+                </table>`;
+        }
         
         // Store filtered data for modal access
         let sqpFilteredData = [];
-        
-        // Global variable for SQP end date (used by sorting)
-        let currentSqpEndDate = new Date();
         
         function renderSqpImpShareChart(row, idx) {
             const weeklyData = row.weeklyImpShare || [];
@@ -8541,12 +7617,13 @@
         
         function openSqpImpShareModal(idx) {
             // Get the row from current filtered data
+            const asinFilter = document.getElementById('sqpAsinFilter').value;
             const minVolume = parseFloat(document.getElementById('sqpMinVolume').value) || 0;
             const minSpend = parseFloat(document.getElementById('sqpMinSpend').value) || 0;
             const convDeltaFilter = document.getElementById('sqpConvDeltaFilter').value;
             
             let filtered = sqpCombinedData.filter(row => {
-                if (sqpSelectedAsins.size > 0 && !sqpSelectedAsins.has(row.asin)) return false;
+                if (asinFilter !== 'all' && row.asin !== asinFilter) return false;
                 if (row.queryVolume < minVolume) return false;
                 if (row.spend < minSpend) return false;
                 if (convDeltaFilter === 'positive' && (row.convDelta === null || row.convDelta <= 0)) return false;
